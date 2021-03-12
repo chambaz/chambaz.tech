@@ -1,0 +1,40 @@
+.nav {
+  align-items: center;
+  display: flex;
+  font-size: 22px;
+  height: 100px;
+  padding: 0 40px;
+}
+
+.navLogo {
+  color: white;
+  opacity: 0.7;
+}
+
+.navList {
+  display: flex;
+  margin: 0 0 0 auto;
+}
+
+.navItem {
+  display: block;
+  margin-left: 40px;
+}
+
+.navLink,
+.navLink:link,
+.navLink:active,
+.navLink:hover,
+.navLink:visited {
+  border-bottom: solid 2px black;
+  color: white;
+  opacity: 0.7;
+  padding-bottom: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navLink:hover {
+  border-color: white;
+  opacity: 1;
+}

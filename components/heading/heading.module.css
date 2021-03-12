@@ -1,0 +1,18 @@
+.header {
+  color: white;
+}
+
+.heading {
+  font-family: bely-display, sans-serif;
+  font-size: 80px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.subheading {
+  font-family: bely, serif;
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}

@@ -1,21 +1,28 @@
 body {
+  font-family: bely, serif;
+  font-style: normal;
+  font-weight: 400;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
-  background: lavender;
+  background: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: bely-display, sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 canvas {
   width: 100%;
   height: 100vh;
-}
-
-h1 {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  color: hotpink;
 }
 
 .main {
@@ -28,16 +35,4 @@ h1 {
   justify-content: center;
   align-items: center;
   color: white;
-}
-
-a {
-  color: white;
-  display: block;
-  text-decoration: unset;
-  font-size: 20px;
-  margin: 5px 0;
-}
-
-a:hover {
-  color: #3f51b5;
 }
