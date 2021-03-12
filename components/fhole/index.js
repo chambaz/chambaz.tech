@@ -2,11 +2,19 @@ import { useRef } from 'react'
 import { useLoader, useFrame } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-const FHole = () => {
+const FHole = (props) => {
+  console.log(props.mouse)
   const mesh = useRef()
   const gltf = useLoader(GLTFLoader, '/models/fhole.glb')
 
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01))
+  const rotation = 0.018
+
+  useFrame(() => {
+    mesh.current.rotation.y +=
+      rotation * (props.mouse.x * (rotation * 0.1) - mesh.current.rotation.y)
+    mesh.current.rotation.x +=
+      rotation * (props.mouse.y * (rotation * 0.1) - mesh.current.rotation.x)
+  })
 
   return (
     <primitive
