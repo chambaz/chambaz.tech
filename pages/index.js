@@ -1,5 +1,8 @@
-import React, { Suspense, useState } from 'react'
-import { Canvas } from 'react-three-fiber'
+import React, { Suspense, useEffect, useState } from 'react'
+import { Canvas, useResource } from 'react-three-fiber'
+import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import { EffectComposer, Bloom, Noise, Glitch } from 'react-postprocessing'
+import { GlitchMode } from 'postprocessing'
 
 import Nav from '../components/nav'
 import Container from '../components/container'
@@ -7,7 +10,10 @@ import Heading from '../components/heading'
 import FHole from '../components/fhole'
 
 const Home = () => {
+  const camera = useResource()
   const [mousePos, setMousePos] = useState({})
+  const [glitchActive, setGlitchActive] = useState(false)
+
   const onMouseMove = (e) => {
     setMousePos({
       x: e.pageX - window.innerWidth / 2,
@@ -16,21 +22,33 @@ const Home = () => {
   }
 
   return (
-    <main>
+    <main onMouseMove={onMouseMove}>
       <Nav />
       <Container>
-        <Heading />
+        <Heading setGlitchActive={setGlitchActive} />
       </Container>
       <Canvas
         camera={{ position: [0, 0, 35] }}
-        onMouseMove={onMouseMove}
-        style={{ position: 'fixed', top: 0, left: 0 }}>
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-        <pointLight position={[-10, -10, -10]} />
+        style={{ position: 'fixed', top: 0, left: 0, zIndex: 1 }}>
+        <PerspectiveCamera ref={camera} position={[0, 5, 5]} />
+        <pointLight position={[-5, 0, -5]} color="#0201ff" intensity={1} />
+        <pointLight position={[5, 0, -5]} color="#ff0078" intensity={1} />
         <Suspense fallback={<mesh />}>
           <FHole mouse={mousePos} />
         </Suspense>
+
+        {glitchActive && (
+          <EffectComposer>
+            <Glitch
+              delay={[1.5, 3.5]}
+              duration={[0.6, 1.0]}
+              strength={[0.3, 1.0]}
+              mode={GlitchMode.CONSTANT_MILD}
+              active
+              ratio={0.85}
+            />
+          </EffectComposer>
+        )}
       </Canvas>
     </main>
   )

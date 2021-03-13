@@ -12,6 +12,7 @@
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-postprocessing": "^1.4.0",
     "react-three-fiber": "5.3.19",
     "three": "0.126.0"
   },
