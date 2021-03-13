@@ -1,10 +1,15 @@
 import styles from './heading.module.css'
 
-const Heading = () => {
+const Heading = (props) => {
   return (
-    <header className={styles.header}>
-      <h1 className={styles.subheading}>Adam Chambers</h1>
-      <h2 className={styles.heading}>Creative Engineer</h2>
+    <header
+      onMouseEnter={() => props.setGlitchActive(true)}
+      onMouseLeave={() => props.setGlitchActive(false)}>
+      <h1 className={styles.heading}>
+        Creative
+        <br />
+        Engineer
+      </h1>
     </header>
   )
 }

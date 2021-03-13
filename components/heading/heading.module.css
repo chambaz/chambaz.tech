@@ -1,18 +1,7 @@
-.header {
-  color: white;
-}
-
 .heading {
-  font-family: bely-display, sans-serif;
-  font-size: 90px;
-  font-weight: 400;
+  color: white;
+  font-family: harmondsemibold, serif;
+  font-size: 200px;
+  line-height: 1;
   margin: 0;
-}
-
-.subheading {
-  font-family: bely, serif;
-  font-size: 32px;
-  font-weight: 400;
-  margin: 0 0 20px;
-  text-transform: uppercase;
 }
