@@ -1,7 +1,13 @@
 .heading {
   color: white;
   font-family: harmondsemibold, serif;
-  font-size: 200px;
+  font-size: 100px;
   line-height: 1;
   margin: 0;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 200px;
+  }
 }

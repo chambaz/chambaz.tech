@@ -3,17 +3,17 @@
   display: flex;
   font-size: 22px;
   height: 100px;
-  padding: 0 40px;
+  padding: 0 20px;
   position: relative;
   z-index: 3;
 }
 
 .navLogo {
-  width: 30px;
+  width: 20px;
 }
 
 .navList {
-  display: flex;
+  display: none;
   margin: 0 0 0 auto;
 }
 
@@ -36,4 +36,19 @@
 .navLinkActive {
   border-color: white;
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    padding: 0 40px;
+  }
+
+  .navLogo {
+    width: 30px;
+  }
+
+  .navList {
+    display: flex;
+    margin: 0 0 0 auto;
+  }
 }

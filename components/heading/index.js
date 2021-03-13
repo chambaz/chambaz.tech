@@ -2,7 +2,7 @@ import styles from './heading.module.css'
 
 const Heading = (props) => {
   return (
-    <header
+    <div
       onMouseEnter={() => props.setGlitchActive(true)}
       onMouseLeave={() => props.setGlitchActive(false)}>
       <h1 className={styles.heading}>
@@ -10,7 +10,7 @@ const Heading = (props) => {
         <br />
         Engineer
       </h1>
-    </header>
+    </div>
   )
 }
 
