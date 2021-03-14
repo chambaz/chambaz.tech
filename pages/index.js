@@ -1,9 +1,10 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import { Canvas, useResource } from 'react-three-fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
 import { GlitchMode } from 'postprocessing'
 
+import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
@@ -13,6 +14,7 @@ import FHole from '../components/fhole'
 const Home = () => {
   const camera = useResource()
   const [mousePos, setMousePos] = useState({})
+  const [fontLoaded, setFontLoaded] = useState(false)
   const [glitchActive, setGlitchActive] = useState(false)
 
   const onMouseMove = (e) => {
@@ -22,8 +24,20 @@ const Home = () => {
     })
   }
 
+  useEffect(() => {
+    const timeNow = new Date().getTime()
+    document.fonts.ready.then(() => {
+      const timePast = new Date().getTime() - timeNow
+
+      setTimeout(() => {
+        setFontLoaded(true)
+      }, 2000 - timePast)
+    })
+  }, [])
+
   return (
     <main onMouseMove={onMouseMove}>
+      {!fontLoaded && <Loader loaded={fontLoaded} />}
       <Background />
       <Nav />
       <Container>
