@@ -10,6 +10,7 @@ import Nav from '../components/nav'
 import Container from '../components/container'
 import Heading from '../components/heading'
 import FHole from '../components/fhole'
+import Footer from '../components/footer'
 
 const Home = () => {
   const camera = useResource()
@@ -54,6 +55,7 @@ const Home = () => {
           </EffectComposer>
         )}
       </Canvas>
+      <Footer />
     </main>
   )
 }
