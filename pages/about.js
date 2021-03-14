@@ -1,3 +1,4 @@
+import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
 
@@ -6,6 +7,7 @@ import styles from '../components/container/container.module.css'
 const About = () => {
   return (
     <main>
+      <Background />
       <Nav />
       <Container>
         <div className={styles.copy}>

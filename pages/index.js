@@ -4,6 +4,7 @@ import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
 import { GlitchMode } from 'postprocessing'
 
+import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
 import Heading from '../components/heading'
@@ -23,6 +24,7 @@ const Home = () => {
 
   return (
     <main onMouseMove={onMouseMove}>
+      <Background />
       <Nav />
       <Container>
         <Heading setGlitchActive={setGlitchActive} />

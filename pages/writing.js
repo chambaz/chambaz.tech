@@ -1,9 +1,11 @@
+import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
 
 const Writing = () => {
   return (
     <main>
+      <Background />
       <Nav />
       <Container></Container>
     </main>
