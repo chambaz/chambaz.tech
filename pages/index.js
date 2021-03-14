@@ -1,7 +1,7 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Canvas, useResource } from 'react-three-fiber'
-import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
-import { EffectComposer, Bloom, Noise, Glitch } from 'react-postprocessing'
+import { PerspectiveCamera } from '@react-three/drei'
+import { EffectComposer, Glitch } from 'react-postprocessing'
 import { GlitchMode } from 'postprocessing'
 
 import Nav from '../components/nav'

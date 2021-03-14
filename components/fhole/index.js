@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useLoader, useFrame, useEffect } from 'react-three-fiber'
+import { useLoader, useFrame } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 const FHole = (props) => {
