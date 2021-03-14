@@ -16,6 +16,10 @@
   text-align: center;
 }
 
+.loaderSecondary {
+  z-index: 3;
+}
+
 .loaderLogo {
   width: 40px;
   margin: 0 auto 10px;

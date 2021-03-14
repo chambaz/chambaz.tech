@@ -16,11 +16,9 @@ const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-      <Link href="/">
-        <a>
-          <img className={styles.navLogo} src="/img/fhole.svg" />
-        </a>
-      </Link>
+      <a onClick={() => router.push('/')}>
+        <img className={styles.navLogo} src="/img/fhole.svg" />
+      </a>
       <ul className={styles.navList}>
         {navItems.map((item, key) => {
           return (
