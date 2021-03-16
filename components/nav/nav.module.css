@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   font-size: 22px;
+  letter-spacing: 1px;
   height: 100px;
   padding: 0 20px;
   position: relative;
@@ -55,6 +56,11 @@
   opacity: 1;
 }
 
+.hamburger {
+  margin: -5px 0 0 auto;
+  width: 30px;
+}
+
 @media (min-width: 768px) {
   .nav {
     padding: 0 40px;
@@ -67,5 +73,9 @@
   .navList {
     display: flex;
     margin: 0 0 0 auto;
+  }
+
+  .hamburger {
+    display: none;
   }
 }

@@ -1,14 +1,17 @@
 .footer {
   bottom: 0;
   left: 0;
+  letter-spacing: 1px;
   margin: 0;
   opacity: 0.7;
-  padding: 30px 23px;
+  padding: 20px 23px;
   position: absolute;
   z-index: 3;
   font-size: 20px;
 }
 
 @media (min-width: 768px) {
-  padding: 30px 35px;
+  .footer {
+    padding: 30px 35px;
+  }
 }
