@@ -16,7 +16,7 @@ const Heading = (props) => {
       onTouchEnd={() => hover(!props.glitchActive)}>
       <h1
         className={
-          hoverActive
+          hoverActive || props.glitchActive
             ? `${styles.heading} ${styles.headingGlitch}`
             : styles.heading
         }>

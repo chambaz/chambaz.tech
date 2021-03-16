@@ -6,7 +6,6 @@
   left: 0;
   width: 100vw;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
   font-size: 18px;
   z-index: 4;
   background: black;
@@ -15,6 +14,10 @@
   justify-content: center;
   font-family: Menlo;
   text-align: center;
+}
+
+.loaderSafari {
+  min-height: -webkit-fill-available;
 }
 
 .loaderSecondary {

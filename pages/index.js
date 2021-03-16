@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useState, useRef, useEffect } from 'react'
 import { Canvas, useResource } from 'react-three-fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
@@ -13,6 +13,7 @@ import FHole from '../components/fhole'
 import Footer from '../components/footer'
 
 const Home = () => {
+  const headingRef = useRef()
   const camera = useResource()
   const [mousePos, setMousePos] = useState({})
   const [glitchActive, setGlitchActive] = useState(false)
@@ -28,16 +29,40 @@ const Home = () => {
     })
   }
 
+  const onTouchMove = (e) => {
+    e = e.touches[0]
+
+    const headingBox = headingRef.current.getBoundingClientRect()
+
+    if (
+      e.pageX > headingBox.left &&
+      e.pageX < headingBox.right &&
+      e.pageY > headingBox.top &&
+      e.pageY < headingBox.bottom
+    ) {
+      setGlitchActive(true)
+    } else {
+      setGlitchActive(false)
+    }
+
+    setMousePos({
+      x: e.pageX - window.innerWidth / 2,
+      y: e.pageY - window.innerHeight / 2,
+    })
+  }
+
   return (
-    <main onMouseMove={onMouseMove} onTouchMove={onMouseMove}>
+    <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>
       <Loader />
       <Background />
       <Nav />
       <Container>
-        <Heading
-          glitchActive={glitchActive}
-          setGlitchActive={setGlitchActive}
-        />
+        <div ref={headingRef}>
+          <Heading
+            glitchActive={glitchActive}
+            setGlitchActive={setGlitchActive}
+          />
+        </div>
       </Container>
       <Canvas
         camera={{ position: [0, 0, 35] }}
