@@ -18,6 +18,10 @@ const Home = () => {
   const [glitchActive, setGlitchActive] = useState(false)
 
   const onMouseMove = (e) => {
+    if (e.touches && e.touches.length) {
+      e = e.touches[0]
+    }
+
     setMousePos({
       x: e.pageX - window.innerWidth / 2,
       y: e.pageY - window.innerHeight / 2,
@@ -25,12 +29,15 @@ const Home = () => {
   }
 
   return (
-    <main onMouseMove={onMouseMove}>
+    <main onMouseMove={onMouseMove} onTouchMove={onMouseMove}>
       <Loader />
       <Background />
       <Nav />
       <Container>
-        <Heading setGlitchActive={setGlitchActive} />
+        <Heading
+          glitchActive={glitchActive}
+          setGlitchActive={setGlitchActive}
+        />
       </Container>
       <Canvas
         camera={{ position: [0, 0, 35] }}

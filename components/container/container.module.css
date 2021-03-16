@@ -3,12 +3,19 @@
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   margin: -100px auto 0;
   max-width: 1100px;
   position: relative;
   text-align: center;
   width: 100%;
   z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .container {
+    min-height: 100vh;
+  }
 }
 
 .copy {

@@ -8,7 +8,7 @@
   transition: 0.5s;
 }
 
-.heading:hover {
+.heading.headingGlitch {
   opacity: 0.75;
 }
 
@@ -34,17 +34,17 @@
   top: 50.4%;
 }
 
-.heading:hover:before,
-.heading:hover:after {
+.heading.headingGlitch:before,
+.heading.headingGlitch:after {
   opacity: 1;
   transition: 0.5s;
 }
 
-.heading:hover:before {
+.heading.headingGlitch:before {
   animation: distort1 0.5s linear infinite;
 }
 
-.heading:hover:after {
+.heading.headingGlitch:after {
   animation: distort2 0.5s linear infinite;
 }
 
