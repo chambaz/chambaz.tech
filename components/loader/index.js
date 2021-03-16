@@ -38,7 +38,7 @@ const Loader = (props) => {
     cls += ` ${styles.loaderSecondary}`
   }
 
-  if (isMobileSafari) {
+  if (isSafari) {
     cls += ` ${styles.loaderSafari}`
   }
 

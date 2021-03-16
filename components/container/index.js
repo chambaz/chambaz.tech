@@ -14,7 +14,7 @@ const Container = (props) => {
   return (
     <div
       className={
-        isMobileSafari
+        isSafari
           ? `${styles.container} ${styles.containerSafari}`
           : styles.container
       }>
