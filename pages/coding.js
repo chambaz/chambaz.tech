@@ -2,18 +2,20 @@ import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
-import Footer from '../components/footer'
+import Grid from '../components/grid'
+import data from '../data/articles.json'
 
-const Coding = () => {
+const Writing = () => {
   return (
     <main>
       <Loader />
       <Background />
       <Nav />
-      <Container></Container>
-      <Footer />
+      <Container>
+        <Grid heading="Coding" data={data} />
+      </Container>
     </main>
   )
 }
 
-export default Coding
+export default Writing

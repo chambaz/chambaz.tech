@@ -3,7 +3,7 @@ import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
 import Grid from '../components/grid'
-import Footer from '../components/footer'
+import data from '../data/articles.json'
 
 const Writing = () => {
   return (
@@ -11,8 +11,8 @@ const Writing = () => {
       <Loader />
       <Background />
       <Nav />
-      <Container noSafariFix={true}>
-        <Grid heading="Writing" />
+      <Container>
+        <Grid heading="Writing" data={data} />
       </Container>
     </main>
   )
