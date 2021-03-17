@@ -12,8 +12,8 @@ const About = () => {
       <Loader />
       <Background />
       <Nav />
-      <Container>
-        {/* <div className={styles.copy}>
+      <Container centerAlign={true}>
+        <div className={styles.containerCopy}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut
             blandit ex. Pellentesque eleifend a libero in condimentum. Curabitur
@@ -34,7 +34,7 @@ const About = () => {
             sit amet tortor. Suspendisse potenti. Maecenas dictum varius
             tincidunt. Nam nec elementum enim. Sed ut rutrum dui.
           </p>
-        </div> */}
+        </div>
       </Container>
       <Footer />
     </main>

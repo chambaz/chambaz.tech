@@ -20,13 +20,13 @@
   }
 }
 
-.copy {
+.containerCopy {
   font-size: 20px;
   line-height: 1.75;
   max-width: 900px;
   text-align: left;
 }
 
-.copy p {
+.containerCopy p {
   margin: 0 0 40px;
 }

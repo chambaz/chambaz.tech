@@ -6,7 +6,7 @@ const Container = (props) => {
   const [isSafari, setIsSafari] = useState(false)
 
   useEffect(() => {
-    if (isMobileSafari && props.noSafariFix !== true) {
+    if (isMobileSafari) {
       setIsSafari(true)
     }
   }, [])
