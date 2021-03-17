@@ -12,9 +12,8 @@ const Writing = () => {
       <Background />
       <Nav />
       <Container noSafariFix={true}>
-        <Grid />
+        <Grid heading="Writing" />
       </Container>
-      <Footer />
     </main>
   )
 }

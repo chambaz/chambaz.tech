@@ -1,20 +1,31 @@
 .grid {
-  display: grid;
-  gap: 50px;
-  grid-template-columns: 1fr;
-  padding: 0 30px;
   margin-top: 120px;
   max-height: calc(100vh - 180px);
   overflow: auto;
+  padding: 0 30px;
+  width: 100%;
+}
+
+.gridHeading {
+  margin-bottom: 80px;
+}
+
+.gridContainer {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: 1fr;
   width: 100%;
 }
 
 @media (min-width: 768px) {
   .grid {
+    margin-top: 120px;
+    max-height: none;
+  }
+
+  .gridContainer {
     gap: 80px;
     grid-template-columns: 1fr 1fr;
-    margin-top: 180px;
-    max-height: none;
   }
 }
 
@@ -25,17 +36,17 @@
   text-align: left;
 }
 
-.gridImg {
+.gridItemImg {
   width: 100%;
 }
 
-.gridHeading {
+.gridItemHeading {
   margin: 20px 0 20px;
   padding: 0 40px;
   width: 75%;
 }
 
-.gridLink {
+.gridItemLink {
   display: inline-block;
   margin-bottom: 30px;
   padding: 0 40px;
