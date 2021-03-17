@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
@@ -9,6 +11,9 @@ import styles from '../components/container/container.module.css'
 const About = () => {
   return (
     <main>
+      <Head>
+        <title>Adam Chambers - About</title>
+      </Head>
       <Loader />
       <Background />
       <Nav />

@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
@@ -7,6 +9,9 @@ import Footer from '../components/footer'
 const Contact = () => {
   return (
     <main>
+      <Head>
+        <title>Adam Chambers - Contact</title>
+      </Head>
       <Loader />
       <Background />
       <Nav />

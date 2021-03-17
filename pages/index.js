@@ -1,4 +1,5 @@
-import React, { Suspense, useState, useRef, useEffect } from 'react'
+import React, { Suspense, useState, useRef } from 'react'
+import Head from 'next/head'
 import { Canvas, useResource } from 'react-three-fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
@@ -53,6 +54,9 @@ const Home = () => {
 
   return (
     <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>
+      <Head>
+        <title>Adam Chambers - Creative Engineer</title>
+      </Head>
       <Loader />
       <Background />
       <Nav />
