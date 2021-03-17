@@ -153,6 +153,10 @@
     transition: 0.75s;
   }
 
+  .navLinkActive {
+    opacity: 1;
+  }
+
   .navLink:not(.navLinkActive):hover:after {
     width: 100%;
     opacity: 1;
