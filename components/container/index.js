@@ -6,7 +6,7 @@ const Container = (props) => {
   const [isSafari, setIsSafari] = useState(false)
 
   useEffect(() => {
-    if (isMobileSafari) {
+    if (isMobileSafari && props.noSafariFix !== true) {
       setIsSafari(true)
     }
   }, [])
@@ -17,7 +17,8 @@ const Container = (props) => {
         isSafari
           ? `${styles.container} ${styles.containerSafari}`
           : styles.container
-      }>
+      }
+      style={{ alignItems: props.centerAlign ? 'center' : 'flex-start' }}>
       {props.children}
     </div>
   )

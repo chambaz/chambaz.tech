@@ -56,7 +56,7 @@ const Home = () => {
       <Loader />
       <Background />
       <Nav />
-      <Container>
+      <Container centerAlign={true}>
         <div ref={headingRef}>
           <Heading
             glitchActive={glitchActive}

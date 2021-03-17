@@ -1,0 +1,42 @@
+.grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: 1fr;
+  padding: 0 30px;
+  margin-top: 120px;
+  max-height: calc(100vh - 180px);
+  overflow: auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 180px;
+    max-height: none;
+  }
+}
+
+.gridItem {
+  background: white;
+  color: black;
+  padding: 10px;
+  text-align: left;
+}
+
+.gridImg {
+  width: 100%;
+}
+
+.gridHeading {
+  margin: 20px 0 20px;
+  padding: 0 40px;
+  width: 75%;
+}
+
+.gridLink {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 0 40px;
+}
