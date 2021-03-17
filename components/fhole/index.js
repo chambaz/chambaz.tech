@@ -3,7 +3,7 @@ import { useLoader, useFrame } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 const FHole = (props) => {
-  const [rotationY, setRotationY] = useState(0.01)
+  const [rotationY, setRotationY] = useState(0.013)
   const [rotationX, setRotationX] = useState(0.01)
   const mesh = useRef()
   const gltf = useLoader(GLTFLoader, '/models/fhole.glb')
