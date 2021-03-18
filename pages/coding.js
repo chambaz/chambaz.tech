@@ -23,7 +23,7 @@ const Writing = () => {
       <Background />
       <Nav />
       <Container>
-        <Grid heading="Coding" data={data} />
+        <Grid heading="Creative Coding" data={data} />
       </Container>
     </main>
   )
