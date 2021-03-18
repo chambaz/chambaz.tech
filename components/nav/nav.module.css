@@ -105,7 +105,7 @@
   transform: rotate(-45deg);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .nav {
     font-size: 22px;
     padding: 0 40px;

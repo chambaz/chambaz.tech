@@ -1,5 +1,6 @@
-import React, { Suspense, useState, useRef } from 'react'
+import React, { Suspense, useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
+import { disablePageScroll } from 'scroll-lock'
 import { Canvas, useResource } from 'react-three-fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
@@ -51,6 +52,10 @@ const Home = () => {
       y: e.pageY - window.innerHeight / 2,
     })
   }
+
+  useEffect(() => {
+    disablePageScroll()
+  }, [])
 
   return (
     <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>

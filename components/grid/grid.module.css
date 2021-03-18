@@ -1,32 +1,24 @@
 .grid {
-  margin-top: 120px;
-  max-height: calc(100vh - 180px);
+  margin-top: 90px;
+  height: calc(100vh - 200px);
   overflow: auto;
   padding: 0 30px;
   width: 100%;
+  position: relative;
+  z-index: 999;
+  transform: translate3d(0, 0, 0);
 }
 
 .gridHeading {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .gridContainer {
   display: grid;
   gap: 50px;
   grid-template-columns: 1fr;
+  margin-bottom: 80px;
   width: 100%;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    margin-top: 120px;
-    max-height: none;
-  }
-
-  .gridContainer {
-    gap: 80px;
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 .gridItem {
@@ -43,13 +35,39 @@
 
 .gridItemHeading {
   margin: 20px 0 20px;
-  padding: 0 40px;
-  width: 75%;
+  padding: 0 20px;
+  width: 90%;
 }
 
 .gridItemLink {
   color: #ff0078;
   display: inline-block;
   margin-bottom: 30px;
-  padding: 0 40px;
+  padding: 0 20px;
+}
+
+@media (min-width: 769px) {
+  .grid {
+    height: calc(100vh - 120px);
+    margin-top: 120px;
+    max-height: none;
+  }
+
+  .gridHeading {
+    margin-bottom: 80px;
+  }
+
+  .gridContainer {
+    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gridItemHeading {
+    padding: 0 40px;
+    width: 75%;
+  }
+
+  .gridItemLink {
+    padding: 0 40px;
+  }
 }

@@ -14,7 +14,7 @@
   min-height: -webkit-fill-available;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .containerSafari {
     min-height: 100vh;
   }

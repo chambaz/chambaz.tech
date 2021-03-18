@@ -9,7 +9,7 @@ const FHole = (props) => {
   const gltf = useLoader(GLTFLoader, '/models/fhole.glb')
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 769) {
       setRotationX(0.02)
       setRotationY(0.04)
     }
