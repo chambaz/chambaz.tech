@@ -14,9 +14,7 @@ const Grid = (props) => {
             </a>
           )
         })}
-        <a
-          href={`https://www.${props.moreLink}`}
-          className={styles.gridItemCenter}>
+        <a href={props.moreLink} className={styles.gridItemCenter}>
           <h2 className={styles.gridItemHeading}>
             See more on {props.moreHeading}
           </h2>
