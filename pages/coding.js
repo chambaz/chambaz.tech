@@ -23,7 +23,13 @@ const Writing = () => {
       <Background />
       <Nav />
       <Container>
-        <Grid heading="Creative Coding" data={data} />
+        <Grid
+          heading="Creative Coding"
+          moreHeading="CodePen"
+          moreLink="https://codepen.io/chambaz"
+          viewHeading="View piece"
+          data={data}
+        />
       </Container>
     </main>
   )

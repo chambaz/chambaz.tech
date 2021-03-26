@@ -23,7 +23,13 @@ const Writing = () => {
       <Background />
       <Nav />
       <Container>
-        <Grid heading="Writing" data={data} />
+        <Grid
+          heading="Writing"
+          moreHeading="digitalsurgeons.com"
+          moreLink="https://www.digitalsurgeons.com/thoughts/author/adam-chambers/"
+          viewHeading="Read article"
+          data={data}
+        />
       </Container>
     </main>
   )
