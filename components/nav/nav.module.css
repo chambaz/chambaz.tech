@@ -13,6 +13,14 @@
   width: 20px;
 }
 
+.navLogo path {
+  transition: 0.3s;
+}
+
+.navLogo:hover path {
+  fill: #ff0078;
+}
+
 .navList {
   display: none;
   margin: 0 0 0 auto;
