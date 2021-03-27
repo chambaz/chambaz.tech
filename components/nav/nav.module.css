@@ -11,14 +11,11 @@
 .navLogo {
   cursor: pointer;
   width: 20px;
-}
-
-.navLogo path {
   transition: 0.3s;
 }
 
-.navLogo:hover path {
-  fill: #ff0078;
+.navLogo:hover {
+  transform: scale(1.07);
 }
 
 .navList {
