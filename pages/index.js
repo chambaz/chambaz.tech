@@ -61,6 +61,7 @@ const Home = () => {
     <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>
       <Head>
         <title>Adam Chambers - Creative Engineer</title>
+        <meta property="og:title" content="Adam Chambers - Creative Engineer" />
       </Head>
       <Loader />
       <Background />

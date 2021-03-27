@@ -11,6 +11,7 @@ const Contact = () => {
     <main>
       <Head>
         <title>Adam Chambers - Contact</title>
+        <meta property="og:title" content="Adam Chambers - Contact" />
       </Head>
       <Loader />
       <Background />

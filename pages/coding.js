@@ -18,6 +18,7 @@ const Writing = () => {
     <main>
       <Head>
         <title>Adam Chambers - Creative Coding</title>
+        <meta property="og:title" content="Adam Chambers - Creative Coding" />
       </Head>
       <Loader />
       <Background />

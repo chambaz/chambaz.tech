@@ -13,6 +13,7 @@ const About = () => {
     <main>
       <Head>
         <title>Adam Chambers - About</title>
+        <meta property="og:title" content="Adam Chambers - About" />
       </Head>
       <Loader />
       <Background />
