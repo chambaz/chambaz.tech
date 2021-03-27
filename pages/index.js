@@ -1,11 +1,11 @@
 import React, { Suspense, useState, useRef, useEffect } from 'react'
-import Head from 'next/head'
 import { disablePageScroll } from 'scroll-lock'
 import { Canvas, useResource } from 'react-three-fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
 import { GlitchMode } from 'postprocessing'
 
+import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
@@ -59,10 +59,7 @@ const Home = () => {
 
   return (
     <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>
-      <Head>
-        <title>Adam Chambers - Creative Engineer</title>
-        <meta property="og:title" content="Adam Chambers - Creative Engineer" />
-      </Head>
+      <Meta title="Adam Chambers - Creative Engineer" />
       <Loader />
       <Background />
       <Nav />

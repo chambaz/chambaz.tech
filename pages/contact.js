@@ -1,5 +1,4 @@
-import Head from 'next/head'
-
+import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
@@ -9,10 +8,7 @@ import Footer from '../components/footer'
 const Contact = () => {
   return (
     <main>
-      <Head>
-        <title>Adam Chambers - Contact</title>
-        <meta property="og:title" content="Adam Chambers - Contact" />
-      </Head>
+      <Meta title="Adam Chambers - Contact" />
       <Loader />
       <Background />
       <Nav />

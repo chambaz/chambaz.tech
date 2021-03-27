@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import Head from 'next/head'
 import { enablePageScroll } from 'scroll-lock'
 
+import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
@@ -16,10 +16,7 @@ const Writing = () => {
 
   return (
     <main>
-      <Head>
-        <title>Adam Chambers - Creative Coding</title>
-        <meta property="og:title" content="Adam Chambers - Creative Coding" />
-      </Head>
+      <Meta title="Adam Chambers - Creative Coding" />
       <Loader />
       <Background />
       <Nav />
