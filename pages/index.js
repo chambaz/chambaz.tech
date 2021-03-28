@@ -97,7 +97,7 @@ const Home = () => {
           </EffectComposer>
         )}
       </Canvas>
-      <Footer />
+      <Footer neverHide={true} />
     </main>
   )
 }

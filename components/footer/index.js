@@ -4,7 +4,12 @@ import { useRouter } from 'next/router'
 import styles from './footer.module.css'
 
 const Footer = (props) => {
-  return <footer className={styles.footer}>Adam Chambers</footer>
+  let cls = styles.footer
+
+  if (props.neverHide) {
+    cls += ` ${styles.footerNeverHide}`
+  }
+  return <footer className={cls}>Adam Chambers</footer>
 }
 
 export default Footer
