@@ -29,6 +29,14 @@
 }
 
 .gridItem,
+.gridItem:link,
+.gridItem:active,
+.gridItem:visited,
+.gridItem:hover,
+.gridItemCenter:link,
+.gridItemCenter:active,
+.gridItemCenter:visited,
+.gridItemCenter:hover,
 .gridItemCenter {
   background: white;
   box-shadow: 0px 10px 40px 0px rgba(25, 38, 45, 1);
@@ -60,6 +68,7 @@
 
 .gridItemCenter .gridItemHeading {
   margin-top: 0;
+  text-align: center;
 }
 
 .gridItemLink {
