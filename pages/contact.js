@@ -26,7 +26,7 @@ const Contact = () => {
       <Background />
       <Nav />
       <Container>
-        <Copy>
+        <Copy noMargin={true}>
           <h1>Get in touch</h1>
           <ul>
             <li>
