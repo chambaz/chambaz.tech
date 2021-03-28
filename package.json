@@ -13,6 +13,7 @@
     "react": "17.0.1",
     "react-device-detect": "^1.17.0",
     "react-dom": "17.0.1",
+    "react-obfuscate": "^3.6.8",
     "react-postprocessing": "^1.4.0",
     "react-three-fiber": "5.3.19",
     "scroll-lock": "^2.1.5",
