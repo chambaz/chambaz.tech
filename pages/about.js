@@ -14,29 +14,20 @@ const About = () => {
       <Loader />
       <Background />
       <Nav />
-      <Container centerAlign={true}>
-        {/* <div className={styles.containerCopy}>
+      <Container>
+        <div className={styles.containerCopy}>
+          <h1>Creative Engineer</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut
-            blandit ex. Pellentesque eleifend a libero in condimentum. Curabitur
-            sodales et ligula id faucibus. Nunc ac sapien et dolor placerat
-            luctus. Donec vitae ante vel felis pretium luctus. Proin iaculis
-            ligula id congue laoreet. In in sapien tempor, finibus orci nec,
-            consectetur turpis. Suspendisse semper tincidunt sapien et bibendum.
-            Duis elementum dapibus ipsum, sed suscipit quam suscipit a. Etiam in
-            sapien ut ligula maximus ultricies.
+            Adam Chambers is a multi-disciplinary creative technologist,
+            marketer, musician, and maker. As partner and Head of Technology at
+            creative consultancy{' '}
+            <a href="https://www.digitalsurgeons.com/">Digital Surgeons</a>,
+            Adam builds and leads cross-functional teams that drive progress for
+            leading brands, businesses, and high-growth startups. Adam takes a
+            creative-led, human-centered approach to business and lives at the
+            intersection of design, technology.
           </p>
-          <p>
-            Nam tempus ut lorem nec facilisis. Etiam sit amet lorem pharetra,
-            maximus nunc ut, accumsan sem. Vestibulum tristique pulvinar
-            finibus. Aliquam et turpis egestas, posuere lectus at, fringilla
-            arcu. In quis sem vitae libero eleifend sollicitudin sed ac ante.
-            Donec porta est a metus aliquet blandit. Quisque ultricies, enim eu
-            sagittis cursus, turpis velit mollis eros, vel molestie arcu enim
-            sit amet tortor. Suspendisse potenti. Maecenas dictum varius
-            tincidunt. Nam nec elementum enim. Sed ut rutrum dui.
-          </p>
-        </div> */}
+        </div>
       </Container>
       <Footer />
     </main>
