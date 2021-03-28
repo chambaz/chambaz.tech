@@ -3,6 +3,7 @@ import Loader from '../components/loader'
 import Background from '../components/background'
 import Nav from '../components/nav'
 import Container from '../components/container'
+import Copy from '../components/copy'
 import Footer from '../components/footer'
 
 import styles from '../components/container/container.module.css'
@@ -15,7 +16,7 @@ const About = () => {
       <Background />
       <Nav />
       <Container>
-        <div className={styles.containerCopy}>
+        <Copy>
           <h1>Creative Engineer</h1>
           <p>
             Adam Chambers is a multi-disciplinary creative technologist,
@@ -25,9 +26,9 @@ const About = () => {
             Adam builds and leads cross-functional teams that drive progress for
             leading brands, businesses, and high-growth startups. Adam takes a
             creative-led, human-centered approach to business and lives at the
-            intersection of design, technology.
+            intersection of design and technology.
           </p>
-        </div>
+        </Copy>
       </Container>
       <Footer />
     </main>
