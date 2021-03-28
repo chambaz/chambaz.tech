@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react'
+import { enablePageScroll } from 'scroll-lock'
+
 import Obfuscate from 'react-obfuscate'
 
 import Meta from '../components/meta'
@@ -9,6 +12,10 @@ import Copy from '../components/copy'
 import Footer from '../components/footer'
 
 const Contact = () => {
+  useEffect(() => {
+    enablePageScroll()
+  }, [])
+
   return (
     <main>
       <Meta

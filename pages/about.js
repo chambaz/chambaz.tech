@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react'
+import { enablePageScroll } from 'scroll-lock'
+
 import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
@@ -9,6 +12,10 @@ import Footer from '../components/footer'
 import styles from '../components/container/container.module.css'
 
 const About = () => {
+  useEffect(() => {
+    enablePageScroll()
+  }, [])
+
   return (
     <main>
       <Meta
