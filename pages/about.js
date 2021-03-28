@@ -9,8 +9,6 @@ import Container from '../components/container'
 import Copy from '../components/copy'
 import Footer from '../components/footer'
 
-import styles from '../components/container/container.module.css'
-
 const About = () => {
   useEffect(() => {
     enablePageScroll()

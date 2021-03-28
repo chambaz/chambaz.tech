@@ -1,5 +1,4 @@
 .copy {
-  align-items: center;
   display: flex;
   flex-direction: column;
   font-size: 20px;
@@ -34,7 +33,6 @@
   display: block;
   margin: 0 0 10px;
   padding: 0;
-  text-align: center;
 }
 
 .copy li a:link,
@@ -49,9 +47,17 @@
 }
 
 @media (min-width: 768px) {
+  .copy {
+    align-items: center;
+  }
+
   .copy h1 {
     font-size: 120px;
     margin-bottom: 60px;
+  }
+
+  .copy li {
+    text-align: center;
   }
 }
 
