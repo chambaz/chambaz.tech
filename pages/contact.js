@@ -11,7 +11,10 @@ import Footer from '../components/footer'
 const Contact = () => {
   return (
     <main>
-      <Meta title="Adam Chambers - Contact" />
+      <Meta
+        title="Adam Chambers - Contact"
+        description="Partner and Head of Technology at creative consultancy Digital Surgeons, multi-disciplinary creative technologist, marketer, musician, and maker."
+      />
       <Loader />
       <Background />
       <Nav />

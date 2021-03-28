@@ -11,7 +11,10 @@ import styles from '../components/container/container.module.css'
 const About = () => {
   return (
     <main>
-      <Meta title="Adam Chambers - About" />
+      <Meta
+        title="Adam Chambers - About"
+        description="Partner and Head of Technology at creative consultancy Digital Surgeons, multi-disciplinary creative technologist, marketer, musician, and maker."
+      />
       <Loader />
       <Background />
       <Nav />

@@ -16,7 +16,10 @@ const Writing = () => {
 
   return (
     <main>
-      <Meta title="Adam Chambers - Creative Coding" />
+      <Meta
+        title="Adam Chambers - Creative Coding"
+        description="Creative coding by Adam Chambers, multi-disciplinary creative technologist, marketer, musician, and maker."
+      />
       <Loader />
       <Background />
       <Nav />
