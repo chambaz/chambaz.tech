@@ -25,7 +25,7 @@
   margin-bottom: 60px;
   position: relative;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 }
 
 .gridItem,
