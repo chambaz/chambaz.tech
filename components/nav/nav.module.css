@@ -50,7 +50,11 @@
   padding: 20px 0;
 }
 
-.navLink {
+.navLink:link,
+.navLink:visited,
+.navLink:active,
+.navLink:hover {
+  border: none;
   color: white;
   opacity: 0.9;
   padding-bottom: 3px;
