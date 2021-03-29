@@ -1,45 +1,105 @@
-import { useRef, useState } from 'react'
-import { Canvas, useFrame } from 'react-three-fiber'
-import { OrbitControls, Box } from '@react-three/drei'
+import React, { Suspense, useState, useRef, useEffect } from 'react'
+import { disablePageScroll } from 'scroll-lock'
+import { Canvas, useResource } from 'react-three-fiber'
+import { PerspectiveCamera } from '@react-three/drei'
+import { EffectComposer, Glitch } from 'react-postprocessing'
+import { GlitchMode } from 'postprocessing'
 
-const MyBox = (props) => {
-  const mesh = useRef()
+import Meta from '../components/meta'
+import Loader from '../components/loader'
+import Background from '../components/background'
+import Nav from '../components/nav'
+import Container from '../components/container'
+import Heading from '../components/heading'
+import FHole from '../components/fhole'
+import Footer from '../components/footer'
 
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
+const Home = () => {
+  const headingRef = useRef()
+  const camera = useResource()
+  const [mousePos, setMousePos] = useState({})
+  const [glitchActive, setGlitchActive] = useState(false)
 
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01))
+  const onMouseMove = (e) => {
+    if (e.touches && e.touches.length) {
+      e = e.touches[0]
+    }
+
+    setMousePos({
+      x: e.pageX - window.innerWidth / 2,
+      y: e.pageY - window.innerHeight / 2,
+    })
+  }
+
+  const onTouchMove = (e) => {
+    e = e.touches[0]
+
+    const headingBox = headingRef.current.getBoundingClientRect()
+
+    if (
+      e.pageX > headingBox.left &&
+      e.pageX < headingBox.right &&
+      e.pageY > headingBox.top &&
+      e.pageY < headingBox.bottom
+    ) {
+      setGlitchActive(true)
+    } else {
+      setGlitchActive(false)
+    }
+
+    setMousePos({
+      x: e.pageX - window.innerWidth / 2,
+      y: e.pageY - window.innerHeight / 2,
+    })
+  }
+
+  useEffect(() => {
+    disablePageScroll()
+  }, [])
 
   return (
-    <Box
-      args={[1, 1, 1]}
-      {...props}
-      ref={mesh}
-      scale={active ? [6, 6, 6] : [5, 5, 5]}
-      onClick={() => setActive(!active)}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}>
-      <meshStandardMaterial
-        attach="material"
-        color={hovered ? '#2b6c76' : '#720b23'}
+    <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>
+      <Meta
+        title="Adam Chambers - Creative Engineer"
+        description="Multi-disciplinary creative technologist, marketer, musician, and maker."
       />
-    </Box>
+      <Loader />
+      <Background />
+      <Nav />
+      <Container centerAlign={true}>
+        <div ref={headingRef}>
+          <Heading
+            glitchActive={glitchActive}
+            setGlitchActive={setGlitchActive}
+          />
+        </div>
+      </Container>
+      <Canvas
+        camera={{ position: [0, 0, 35] }}
+        style={{ position: 'fixed', top: 0, left: 0, zIndex: 1 }}>
+        <PerspectiveCamera ref={camera} position={[0, 5, 5]} />
+        <pointLight position={[-5, 0, -5]} color="#0201ff" intensity={1} />
+        <pointLight position={[5, 0, -5]} color="#ff0078" intensity={1} />
+        <Suspense fallback={<mesh />}>
+          <FHole mouse={mousePos} />
+        </Suspense>
+
+        {glitchActive && (
+          <EffectComposer>
+            <Glitch
+              delay={[1.5, 3.5]}
+              duration={[0.6, 1.0]}
+              strength={[0.3, 1.0]}
+              mode={GlitchMode.CONSTANT_MILD}
+              active
+              ratio={0.85}
+            />
+          </EffectComposer>
+        )}
+      </Canvas>
+      <Footer neverHide={true} />
+    </main>
   )
 }
 
-const BoxesPage = () => {
-  return [
-    <h1>Click on me - Hover me :)</h1>,
-    <Canvas camera={{ position: [0, 0, 35] }}>
-      <ambientLight intensity={2} />
-      <pointLight position={[40, 40, 40]} />
-      <MyBox position={[10, 0, 0]} />
-      <MyBox position={[-10, 0, 0]} />
-      <MyBox position={[0, 10, 0]} />
-      <MyBox position={[0, -10, 0]} />
-      <OrbitControls />
-    </Canvas>,
-  ]
-}
-
-export default BoxesPage
+export default Home

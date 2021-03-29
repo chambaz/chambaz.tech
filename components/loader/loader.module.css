@@ -1,0 +1,35 @@
+.loader {
+  opacity: 1;
+  transition: opacity 2.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  font-size: 18px;
+  z-index: 4;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Menlo;
+  text-align: center;
+}
+
+.loaderSafari {
+  min-height: -webkit-fill-available;
+}
+
+.loaderSecondary {
+  z-index: 3;
+}
+
+.loaderLogo {
+  width: 40px;
+  margin: 0 auto 10px;
+}
+
+.loaderActive {
+  opacity: 0;
+  pointer-events: none;
+}

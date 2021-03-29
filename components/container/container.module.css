@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: -100px auto 0;
+  max-width: 1100px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.containerSafari {
+  min-height: -webkit-fill-available;
+}
+
+@media (min-width: 769px) {
+  .containerSafari {
+    min-height: 100vh;
+  }
+}

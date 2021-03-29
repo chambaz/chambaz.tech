@@ -1,0 +1,73 @@
+.copy {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  height: calc(100vh - 100px);
+  line-height: 1.75;
+  margin: 80px 0 180px;
+  max-width: 900px;
+  padding: 0 35px;
+  text-align: left;
+}
+
+.copyNoMargin {
+  margin-bottom: 0;
+}
+
+.copy h1 {
+  font-family: harmondsemibold, serif;
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: 40px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.copy p {
+  margin: 0 0 40px;
+}
+
+.copy ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.copy li {
+  display: block;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.copy li a:link,
+.copy li a:visited,
+.copy li a:active,
+.copy li a:hover {
+  border-color: transparent;
+}
+
+.copy li a:hover {
+  border-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .copy {
+    align-items: center;
+  }
+
+  .copy h1 {
+    font-size: 120px;
+    margin-bottom: 60px;
+  }
+
+  .copy li {
+    text-align: center;
+  }
+}
+
+@media (min-width: 500px) {
+  .copy {
+    justify-content: center;
+    margin: 0;
+  }
+}
