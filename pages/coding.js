@@ -26,9 +26,9 @@ const Writing = () => {
       <Container>
         <Grid
           heading="Creative Coding"
-          moreHeading="CodePen"
-          moreLink="https://codepen.io/chambaz"
-          viewHeading="View piece"
+          more="codepen.com"
+          moreLink="https://codepen.com/chambaz"
+          view="Open on CodePen"
           data={data}
         />
       </Container>
