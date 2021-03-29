@@ -26,9 +26,9 @@ const Writing = () => {
       <Container>
         <Grid
           heading="Writing"
-          moreHeading="digitalsurgeons.com"
+          more="digitalsurgeons.com"
           moreLink="https://www.digitalsurgeons.com/thoughts/author/adam-chambers/"
-          viewHeading="Read article"
+          view="Read on Digital Surgeons"
           data={data}
         />
       </Container>

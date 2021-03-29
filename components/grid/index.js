@@ -10,15 +10,13 @@ const Grid = (props) => {
             <a href={item.link} className={styles.gridItem} key={key}>
               <img className={styles.gridItemImg} src={item.image} />
               <h2 className={styles.gridItemHeading}>{item.heading}</h2>
-              <span className={styles.gridItemLink}>{props.viewHeading}</span>
+              <span className={styles.gridItemLink}>{props.view}</span>
             </a>
           )
         })}
         <a href={props.moreLink} className={styles.gridItemCenter}>
-          <h2 className={styles.gridItemHeading}>
-            See more on {props.moreHeading}
-          </h2>
-          <span className={styles.gridItemBtn}>Check it out</span>
+          <h2 className={styles.gridItemHeading}>See more on {props.more}</h2>
+          <span className={styles.gridItemBtn}>Visit {props.more}</span>
         </a>
       </div>
     </div>
