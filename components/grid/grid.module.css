@@ -26,6 +26,7 @@
   position: relative;
   width: 100%;
   z-index: 3;
+  transform: translate3d(0, 0, 0);
 }
 
 .gridItem,
