@@ -13,6 +13,7 @@ import Container from '../components/container'
 import Heading from '../components/heading'
 import FHole from '../components/fhole'
 import ScrollBtn from '../components/scrollBtn'
+import Stage from '../components/stage'
 import Footer from '../components/footer'
 
 const Home = () => {
@@ -21,19 +22,10 @@ const Home = () => {
   const [mousePos, setMousePos] = useState({})
   const [glitchActive, setGlitchActive] = useState(false)
 
-  const onMouseMove = (e) => {
-    if (e.touches && e.touches.length) {
+  const onMove = (e) => {
+    if (Array.isArray(e.touches)) {
       e = e.touches[0]
     }
-
-    setMousePos({
-      x: e.pageX - window.innerWidth / 2,
-      y: e.pageY - window.innerHeight / 2,
-    })
-  }
-
-  const onTouchMove = (e) => {
-    e = e.touches[0]
 
     const headingBox = headingRef.current.getBoundingClientRect()
 
@@ -59,7 +51,7 @@ const Home = () => {
   }, [])
 
   return (
-    <main onMouseMove={onMouseMove} onTouchMove={onTouchMove}>
+    <main onMouseMove={onMove} onTouchMove={onMove}>
       <Meta
         title="Adam Chambers - Creative Engineer"
         description="Multi-disciplinary creative technologist, marketer, musician, and maker."
@@ -69,10 +61,7 @@ const Home = () => {
       <Logo />
       <Container centerAlign={true}>
         <div ref={headingRef}>
-          <Heading
-            glitchActive={glitchActive}
-            setGlitchActive={setGlitchActive}
-          />
+          <Heading glitchActive={glitchActive} />
         </div>
       </Container>
       <Canvas
@@ -99,6 +88,7 @@ const Home = () => {
         )}
       </Canvas>
       <ScrollBtn />
+      <Stage heading={headingRef} />
       <Footer neverHide={true} />
     </main>
   )

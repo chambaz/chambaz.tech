@@ -1,0 +1,17 @@
+.stage {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: auto;
+  z-index: 2;
+}
+
+.stageSlide {
+  width: 100vw;
+  height: 50vh;
+  opacity: 0.5;
+}
+
+.stageSlide:first-child {
+  height: 100vh;
+}
