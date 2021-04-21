@@ -63,6 +63,7 @@ const Stage = (props) => {
           gsap.to(props.description.current, {
             opacity: 0,
             duration: 0.25,
+            overwrite: true,
           })
 
           gsap.to(props.scrollBtn.current, {
