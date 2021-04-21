@@ -1,0 +1,26 @@
+.description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -40px;
+  z-index: 2;
+  display: block;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.75;
+  opacity: 0;
+  z-index: 3;
+}
+
+.description a {
+  color: white;
+  text-decoration: none;
+  border-bottom: solid 1px white;
+  transition: 0.5s;
+}
+
+.description a:hover {
+  color: #ff0078;
+  border-color: transparent;
+}

@@ -13,12 +13,14 @@ import Container from '../components/container'
 import Heading from '../components/heading'
 import FHole from '../components/fhole'
 import ScrollBtn from '../components/scrollBtn'
+import Description from '../components/description'
 import Stage from '../components/stage'
 import Footer from '../components/footer'
 
 const Home = () => {
   const headingRef = useRef()
   const canvasRef = useRef()
+  const descriptionRef = useRef()
   const scrollBtnRef = useRef()
   const camera = useResource()
   const [mousePos, setMousePos] = useState({})
@@ -92,7 +94,13 @@ const Home = () => {
         </Canvas>
       </div>
       <ScrollBtn scrollBtnRef={scrollBtnRef} />
-      <Stage heading={headingRef} canvas={canvasRef} scrollBtn={scrollBtnRef} />
+      <Description descriptionRef={descriptionRef} />
+      <Stage
+        heading={headingRef}
+        canvas={canvasRef}
+        scrollBtn={scrollBtnRef}
+        description={descriptionRef}
+      />
       <Footer neverHide={true} />
     </main>
   )
