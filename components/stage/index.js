@@ -19,11 +19,24 @@ const Stage = (props) => {
         trigger: slideRef2.current,
         scroller: slidesRef.current,
         start: 'top 55%',
+        invalidateOnRefresh: true,
         onEnter: () => {
           gsap.to(props.heading.current, {
-            y: -100,
-            opacity: 0.2,
+            y: (window.innerHeight / 2) * -1,
+            opacity: 0.1,
             duration: 1,
+            delay: 0.15,
+          })
+
+          gsap.to(props.canvas.current, {
+            y: (window.innerHeight / 2) * -1,
+            opacity: 0.1,
+            duration: 1,
+          })
+
+          gsap.to(props.scrollBtn.current, {
+            opacity: 0,
+            duration: 0.5,
           })
         },
         onLeaveBack: () => {
@@ -31,6 +44,19 @@ const Stage = (props) => {
             y: 0,
             opacity: 1,
             duration: 1,
+            delay: 0.15,
+          })
+
+          gsap.to(props.canvas.current, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+          })
+
+          gsap.to(props.scrollBtn.current, {
+            opacity: 1,
+            duration: 1,
+            delay: 1,
           })
         },
       })

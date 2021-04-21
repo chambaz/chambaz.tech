@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 
 import styles from './scrollBtn.module.css'
 
-const Nav = () => {
+const ScrollBtn = (props) => {
   const iconRef = useRef(null)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Nav = () => {
   }, [])
 
   return (
-    <button className={styles.scrollBtn}>
+    <button ref={props.scrollBtnRef} className={styles.scrollBtn}>
       {' '}
       <span>Scroll</span>{' '}
       <svg
@@ -46,4 +46,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default ScrollBtn
