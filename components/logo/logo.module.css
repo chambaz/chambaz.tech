@@ -15,7 +15,7 @@
 }
 
 .logo path {
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 .logo:hover path {
