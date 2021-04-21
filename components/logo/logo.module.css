@@ -13,3 +13,11 @@
   max-width: 100%;
   height: auto;
 }
+
+.logo path {
+  transition: 0.3s;
+}
+
+.logo:hover path {
+  fill: #ff0078;
+}
