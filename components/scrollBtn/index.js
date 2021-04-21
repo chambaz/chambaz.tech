@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 
 import styles from './scrollBtn.module.css'
 
 const Nav = () => {
+  const iconRef = useRef(null)
+
+  useEffect(() => {
+    if (iconRef) {
+      const tl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 3,
+      })
+
+      tl.to(iconRef.current, {
+        y: 5,
+        duration: 0.5,
+        repeat: 5,
+        yoyo: true,
+      })
+    }
+  }, [])
+
   return (
     <button className={styles.scrollBtn}>
       {' '}
       <span>Scroll</span>{' '}
       <svg
+        ref={iconRef}
         width="32"
         height="32"
         viewBox="0 0 32 32"
