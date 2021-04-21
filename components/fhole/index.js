@@ -28,7 +28,7 @@ const FHole = (props) => {
   return (
     <primitive
       ref={mesh}
-      position={[0, 0, 0]}
+      position={[0, 2, 0]}
       scale={[0.9, 0.9, 0.9]}
       object={gltf.scene}
       dispose={null}></primitive>

@@ -8,10 +8,11 @@ import { GlitchMode } from 'postprocessing'
 import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
-import Nav from '../components/nav'
+import Logo from '../components/logo'
 import Container from '../components/container'
 import Heading from '../components/heading'
 import FHole from '../components/fhole'
+import ScrollBtn from '../components/scrollBtn'
 import Footer from '../components/footer'
 
 const Home = () => {
@@ -65,7 +66,7 @@ const Home = () => {
       />
       <Loader />
       <Background />
-      <Nav />
+      <Logo />
       <Container centerAlign={true}>
         <div ref={headingRef}>
           <Heading
@@ -97,6 +98,7 @@ const Home = () => {
           </EffectComposer>
         )}
       </Canvas>
+      <ScrollBtn />
       <Footer neverHide={true} />
     </main>
   )

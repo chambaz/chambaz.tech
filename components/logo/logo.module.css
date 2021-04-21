@@ -1,0 +1,15 @@
+.logo {
+  cursor: pointer;
+  width: 40px;
+  transition: 0.3s;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+  text-decoration: none;
+}
+
+.logo svg {
+  max-width: 100%;
+  height: auto;
+}
