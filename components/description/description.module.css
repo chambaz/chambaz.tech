@@ -11,6 +11,11 @@
   line-height: 1.75;
   opacity: 0;
   z-index: 3;
+  width: 90%;
+}
+
+.description br {
+  display: none;
 }
 
 .description a {
@@ -49,4 +54,17 @@
 
 .descriptionListItemLinkSoundCloud svg {
   transform: scale(0.91);
+}
+
+@media (min-width: 900px) {
+  .description {
+    width: 800px;
+  }
+
+  .description br {
+    display: block;
+  }
+}
+
+@media (min-width: 1240px) {
 }
