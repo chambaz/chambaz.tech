@@ -24,3 +24,29 @@
   color: #ff0078;
   border-color: transparent;
 }
+
+.descriptionList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.descriptionListItem {
+  display: block;
+  margin: 0 5px;
+  padding: 0;
+}
+
+.description .descriptionListItemLink {
+  border: none;
+}
+
+.descriptionListItemLinkCodePen svg {
+  transform: scale(1.13);
+}
+
+.descriptionListItemLinkSoundCloud svg {
+  transform: scale(0.91);
+}
