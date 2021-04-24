@@ -1,0 +1,10 @@
+.audioBtn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 27px;
+}

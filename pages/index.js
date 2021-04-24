@@ -9,6 +9,7 @@ import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
 import Logo from '../components/logo'
+import AudioBtn from '../components/audioBtn'
 import Container from '../components/container'
 import Heading from '../components/heading'
 import FHole from '../components/fhole'
@@ -63,6 +64,7 @@ const Home = () => {
       <Loader />
       <Background />
       <Logo />
+      <AudioBtn />
       <Container centerAlign={true}>
         <div ref={headingRef}>
           <Heading glitchActive={glitchActive} />
