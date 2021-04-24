@@ -10,10 +10,6 @@
   font-size: 20px;
 }
 
-.footerNeverHide {
-  display: block;
-}
-
 @media (min-width: 769px) {
   .footer {
     display: block;

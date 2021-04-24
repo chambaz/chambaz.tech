@@ -1,10 +1,10 @@
 .logo {
   cursor: pointer;
-  width: 40px;
+  width: 25px;
   transition: 0.3s;
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 20px;
+  left: 20px;
   z-index: 3;
   text-decoration: none;
 }
@@ -20,4 +20,12 @@
 
 .logo:hover path {
   fill: #ff0078;
+}
+
+@media (min-width: 769px) {
+  .logo {
+    width: 40px;
+    top: 30px;
+    left: 30px;
+  }
 }

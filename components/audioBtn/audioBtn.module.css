@@ -1,7 +1,7 @@
 .audioBtn {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 25px;
+  right: -10px;
   z-index: 3;
   color: white;
   display: flex;
@@ -22,7 +22,18 @@
 
 .audioBtnLabel {
   font-size: 14px;
-  margin: 0 10px 0 0;
+  margin: 0 -10px 0 0;
   transform: translateY(-5px);
   opacity: 0;
+}
+
+@media (min-width: 769px) {
+  .audioBtn {
+    top: 40px;
+    right: 25px;
+  }
+
+  .audioBtnLabel {
+    margin: 0 10px 0 0;
+  }
 }

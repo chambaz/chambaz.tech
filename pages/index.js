@@ -103,7 +103,7 @@ const Home = () => {
         scrollBtn={scrollBtnRef}
         description={descriptionRef}
       />
-      <Footer neverHide={true} />
+      <Footer />
     </main>
   )
 }
