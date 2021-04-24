@@ -2,9 +2,27 @@
   position: absolute;
   top: 40px;
   right: 40px;
-  z-index: 2;
+  z-index: 3;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.audioBtnBtn {
   background: none;
   border: none;
   color: white;
   font-size: 27px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.audioBtnLabel {
+  font-size: 14px;
+  margin: 0 10px 0 0;
+  transform: translateY(-5px);
+  opacity: 0;
 }
