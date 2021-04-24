@@ -11,11 +11,11 @@ const AudioBtn = (props) => {
     if (labelRef) {
       gsap.to(labelRef.current, {
         opacity: 1,
-        duration: 1,
-        repeat: 3,
+        duration: 2,
+        repeat: 1,
         yoyo: true,
-        repeatDelay: 10,
-        delay: 10,
+        repeatDelay: 7,
+        delay: 12,
       })
     }
   }, [])
