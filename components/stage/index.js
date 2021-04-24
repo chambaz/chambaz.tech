@@ -44,6 +44,8 @@ const Stage = (props) => {
             delay: 0.75,
             duration: 0.75,
           })
+
+          props.description.current.style.pointerEvents = 'all'
         },
         onLeaveBack: () => {
           gsap.to(props.heading.current, {

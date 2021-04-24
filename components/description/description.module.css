@@ -10,6 +10,7 @@
   font-size: 28px;
   line-height: 1.75;
   opacity: 0;
+  pointer-events: none;
   z-index: 3;
   width: 90%;
 }

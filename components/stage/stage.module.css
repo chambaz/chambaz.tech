@@ -4,6 +4,7 @@
   position: relative;
   overflow: auto;
   z-index: 2;
+  display: none;
 }
 
 .stageSlide {

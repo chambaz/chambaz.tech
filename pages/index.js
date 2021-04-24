@@ -28,7 +28,7 @@ const Home = () => {
   const [glitchActive, setGlitchActive] = useState(false)
 
   const onMove = (e) => {
-    if (Array.isArray(e.touches)) {
+    if (e.touches) {
       e = e.touches[0]
     }
 
