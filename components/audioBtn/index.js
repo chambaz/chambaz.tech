@@ -8,10 +8,17 @@ import styles from './audioBtn.module.css'
 const AudioBtn = (props) => {
   const [audioPower, setAudioPower] = useState(false)
   const [hintAnimation, setHintAnimation] = useState(null)
+  const [hintAnimationShown, setHintAnimationShown] = useState(false)
   const labelRef = useRef(null)
 
   const toggleAudio = (hintAnimation) => {
-    hintAnimation.kill()
+    if (!hintAnimationShown) {
+      hintAnimation.kill()
+      gsap.to(labelRef.current, {
+        opacity: 0,
+        duration: 2,
+      })
+    }
     setAudioPower(!audioPower)
   }
 
