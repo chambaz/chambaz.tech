@@ -9,6 +9,10 @@ const ScrollBtn = (props) => {
   const iconRef = useRef(null)
 
   const clickToScroll = () => {
+    if (!isMobile) {
+      return false
+    }
+
     if (!isActive) {
       setIsActive(true)
       gsap.to(props.heading.current, {
