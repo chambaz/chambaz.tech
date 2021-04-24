@@ -14,9 +14,8 @@ const Description = (props) => {
       <p>
         Head of Technology at{' '}
         <a href="https://www.digitalsurgeons.com/">Digital Surgeons</a>.
-        <br />
-        Creative engineer, marketer, musician, maker.
-        <br />I write <a href="https://medium.com/@chambaz">here</a>, do
+        <br /> Creative engineer, marketer, musician, maker.
+        <br /> I write <a href="https://medium.com/@chambaz">here</a>, do
         creative coding <a href="https://codepen.io/chambaz">here</a>, and make
         music <a href="https://soundcloud.com/sankaku-music">here</a>.
       </p>

@@ -95,7 +95,13 @@ const Home = () => {
           )}
         </Canvas>
       </div>
-      <ScrollBtn scrollBtnRef={scrollBtnRef} />
+      <ScrollBtn
+        scrollBtnRef={scrollBtnRef}
+        heading={headingRef}
+        canvas={canvasRef}
+        scrollBtn={scrollBtnRef}
+        description={descriptionRef}
+      />
       <Description descriptionRef={descriptionRef} />
       <Stage
         heading={headingRef}

@@ -73,6 +73,8 @@ const Stage = (props) => {
             duration: 0.75,
             delay: 1,
           })
+
+          props.description.current.style.pointerEvents = 'none'
         },
       })
     }
