@@ -1,25 +1,12 @@
 .logo {
-  cursor: pointer;
   width: 25px;
   transition: 0.3s;
   position: absolute;
   top: 20px;
   left: 20px;
+  height: auto;
   z-index: 3;
   text-decoration: none;
-}
-
-.logo svg {
-  max-width: 100%;
-  height: auto;
-}
-
-.logo path {
-  transition: 0.5s;
-}
-
-.logo:hover path {
-  fill: #ff0078;
 }
 
 @media (min-width: 769px) {
