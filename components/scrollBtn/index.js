@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
+import { animateEnter, animateLeave } from '../../lib/animation'
+
 import styles from './scrollBtn.module.css'
 
 const ScrollBtn = (props) => {
@@ -15,48 +17,11 @@ const ScrollBtn = (props) => {
 
     if (!isActive) {
       setIsActive(true)
-      gsap.to(props.heading.current, {
-        y: (window.innerHeight / 2) * -1,
-        opacity: 0.1,
-        duration: 0.75,
-        delay: 0.15,
-      })
-
-      gsap.to(props.canvas.current, {
-        y: (window.innerHeight / 2) * -1,
-        opacity: 0.1,
-        duration: 0.75,
-      })
-
-      gsap.to(props.description.current, {
-        opacity: 1,
-        delay: 0.75,
-        duration: 0.75,
-      })
-
+      animateEnter(props)
       props.description.current.style.pointerEvents = 'all'
     } else {
       setIsActive(false)
-      gsap.to(props.heading.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.75,
-        delay: 0.35,
-      })
-
-      gsap.to(props.canvas.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.75,
-        delay: 0.2,
-      })
-
-      gsap.to(props.description.current, {
-        opacity: 0,
-        duration: 0.25,
-        overwrite: true,
-      })
-
+      animateLeave(props)
       props.description.current.style.pointerEvents = 'none'
     }
   }
