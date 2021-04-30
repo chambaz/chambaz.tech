@@ -15,9 +15,16 @@ const Description = (props) => {
         Head of Technology at{' '}
         <a href="https://www.digitalsurgeons.com/">Digital Surgeons</a>.
         <br /> Creative engineer, marketer, musician, maker.
-        <br /> I write <a href="https://medium.com/@chambaz">here</a>, do
+        <br /> I write <a href="https://chambaz.medium.com/">here</a>, do
         creative coding <a href="https://codepen.io/chambaz">here</a>, and make
-        music <a href="https://soundcloud.com/sankaku-music">here</a>.
+        music{' '}
+        <a
+          className={styles.descriptionComingSoonLink}
+          href="#"
+          title="Coming soon">
+          here
+        </a>
+        .
       </p>
       <ul className={styles.descriptionList}>
         <li className={styles.descriptionListItem}>
@@ -37,7 +44,7 @@ const Description = (props) => {
         <li className={styles.descriptionListItem}>
           <a
             className={styles.descriptionListItemLink}
-            href="https://medium.com/@chambaz">
+            href="https://chambaz.medium.com/">
             <FaMedium />
           </a>
         </li>
@@ -57,8 +64,9 @@ const Description = (props) => {
         </li>
         <li className={styles.descriptionListItem}>
           <a
-            className={`${styles.descriptionListItemLink} ${styles.descriptionListItemLinkSoundCloud}`}
-            href="https://soundcloud.com/sankaku-music">
+            className={`${styles.descriptionListItemLink} ${styles.descriptionListItemLinkSoundCloud} ${styles.descriptionComingSoonLink}`}
+            href="#"
+            title="Coming soon">
             <ImSoundcloud2 />
           </a>
         </li>
