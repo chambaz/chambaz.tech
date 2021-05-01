@@ -5,6 +5,8 @@ import { PerspectiveCamera } from '@react-three/drei'
 import { EffectComposer, Glitch } from 'react-postprocessing'
 import { GlitchMode } from 'postprocessing'
 
+import { activateDescription, deactivateDescription } from '../lib/animation'
+
 import Meta from '../components/meta'
 import Loader from '../components/loader'
 import Background from '../components/background'
@@ -54,6 +56,16 @@ const Home = () => {
 
   useEffect(() => {
     disablePageScroll()
+
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'Space' || e.key === 'Enter') {
+        activateDescription()
+        setDescIsActive(true)
+      } else if (e.key === 'ArrowUp' || e.key === 'Escape') {
+        deactivateDescription()
+        setDescIsActive(false)
+      }
+    })
   }, [])
 
   return (

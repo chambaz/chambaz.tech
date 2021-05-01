@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 
+import { activateDescription, deactivateDescription } from '../../lib/animation'
+
 import styles from './scrollBtn.module.css'
 
 const ScrollBtn = (props) => {
-  const [isMobile, setIsMobile] = useState(false)
-  const [isActive, setIsActive] = useState(false)
   const iconRef = useRef(null)
 
   gsap.registerPlugin(ScrollToPlugin)
@@ -16,20 +16,12 @@ const ScrollBtn = (props) => {
       setTimeout(() => {
         props.setDescIsActive(true)
       }, 500)
-      gsap.to(document.querySelector('#slides'), {
-        duration: 0.5,
-        scrollTo: document.querySelector('#slide2'),
-      })
-      props.description.current.style.pointerEvents = 'all'
+      activateDescription()
     } else {
       setTimeout(() => {
         props.setDescIsActive(false)
       }, 500)
-      gsap.to(document.querySelector('#slides'), {
-        duration: 1,
-        scrollTo: document.querySelector('#slide1'),
-      })
-      props.description.current.style.pointerEvents = 'none'
+      deactivateDescription()
     }
   }
 
@@ -47,8 +39,6 @@ const ScrollBtn = (props) => {
         yoyo: true,
       })
     }
-
-    setIsMobile(window.innerWidth < 769 ? true : false)
   }, [])
 
   let label = 'More info'
