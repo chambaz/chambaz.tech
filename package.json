@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "@react-three/drei": "3.8.6",
+    "gsap": "^3.6.1",
     "next": "10.0.7",
     "react": "17.0.1",
     "react-device-detect": "^1.17.0",
     "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "react-obfuscate": "^3.6.8",
     "react-postprocessing": "^1.4.0",
     "react-three-fiber": "5.3.19",
