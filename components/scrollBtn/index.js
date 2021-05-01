@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-
-import { animateEnter, animateLeave } from '../../lib/animation'
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 
 import styles from './scrollBtn.module.css'
 
@@ -10,18 +9,26 @@ const ScrollBtn = (props) => {
   const [isActive, setIsActive] = useState(false)
   const iconRef = useRef(null)
 
-  const clickToScroll = () => {
-    if (!isMobile) {
-      return false
-    }
+  gsap.registerPlugin(ScrollToPlugin)
 
-    if (!isActive) {
-      setIsActive(true)
-      animateEnter(props)
+  const clickToScroll = () => {
+    if (!props.descIsActive) {
+      setTimeout(() => {
+        props.setDescIsActive(true)
+      }, 500)
+      gsap.to(document.querySelector('#slides'), {
+        duration: 0.5,
+        scrollTo: document.querySelector('#slide2'),
+      })
       props.description.current.style.pointerEvents = 'all'
     } else {
-      setIsActive(false)
-      animateLeave(props)
+      setTimeout(() => {
+        props.setDescIsActive(false)
+      }, 500)
+      gsap.to(document.querySelector('#slides'), {
+        duration: 1,
+        scrollTo: document.querySelector('#slide1'),
+      })
       props.description.current.style.pointerEvents = 'none'
     }
   }
@@ -44,12 +51,10 @@ const ScrollBtn = (props) => {
     setIsMobile(window.innerWidth < 769 ? true : false)
   }, [])
 
-  let label = ''
+  let label = 'More info'
 
-  if (!isMobile) {
-    label = 'scroll'
-  } else {
-    label = isActive ? 'Back to experience' : 'About Adam Chambers'
+  if (props.descIsActive) {
+    label = 'Back to experience'
   }
 
   return (
@@ -74,7 +79,7 @@ const ScrollBtn = (props) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           transform={
-            isActive ? 'rotate(-90, 16, 16)' : 'rotate(90, 16, 16)'
+            props.descIsActive ? 'rotate(-90, 16, 16)' : 'rotate(90, 16, 16)'
           }></path>
       </svg>{' '}
     </button>

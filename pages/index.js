@@ -25,6 +25,7 @@ const Home = () => {
   const scrollBtnRef = useRef()
   const camera = useResource()
   const [mousePos, setMousePos] = useState({})
+  const [descIsActive, setDescIsActive] = useState(false)
   const [glitchActive, setGlitchActive] = useState(false)
 
   const onMove = (e) => {
@@ -101,6 +102,8 @@ const Home = () => {
         canvas={canvasRef}
         scrollBtn={scrollBtnRef}
         description={descriptionRef}
+        descIsActive={descIsActive}
+        setDescIsActive={setDescIsActive}
       />
       <Description descriptionRef={descriptionRef} />
       <Stage
@@ -108,6 +111,8 @@ const Home = () => {
         canvas={canvasRef}
         scrollBtn={scrollBtnRef}
         description={descriptionRef}
+        descIsActive={descIsActive}
+        setDescIsActive={setDescIsActive}
       />
       <Footer />
     </main>

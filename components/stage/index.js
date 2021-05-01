@@ -21,16 +21,22 @@ const Stage = (props) => {
         scroller: slidesRef.current,
         start: 'top 55%',
         invalidateOnRefresh: true,
-        onEnter: () => animateEnter(props),
-        onLeaveBack: () => animateLeave(props),
+        onEnter: () => {
+          animateEnter(props)
+          props.setDescIsActive(true)
+        },
+        onLeaveBack: () => {
+          animateLeave(props)
+          props.setDescIsActive(false)
+        },
       })
     }
   })
 
   return (
-    <div ref={slidesRef} className={styles.stage}>
-      <div ref={slideRef1} className={styles.stageSlide}></div>
-      <div ref={slideRef2} className={styles.stageSlide}></div>
+    <div ref={slidesRef} id="slides" className={styles.stage}>
+      <div ref={slideRef1} id="slide1" className={styles.stageSlide}></div>
+      <div ref={slideRef2} id="slide2" className={styles.stageSlide}></div>
     </div>
   )
 }
