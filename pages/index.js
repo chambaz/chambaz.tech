@@ -76,8 +76,8 @@ const Home = () => {
       />
       <Loader />
       <Background />
-      <Logo />
-      <AudioBtn />
+      <Logo setDescIsActive={setDescIsActive} />
+      {/* <AudioBtn /> */}
       <Container centerAlign={true}>
         <div ref={headingRef}>
           <Heading glitchActive={glitchActive} />
