@@ -1,11 +1,19 @@
 import React from 'react'
 
+import { deactivateDescription } from '../../lib/animation'
+
 import styles from './logo.module.css'
 
-const Logo = () => {
+const Logo = (props) => {
+  const onClick = () => {
+    props.setDescIsActive(false)
+    deactivateDescription()
+  }
+
   return (
     <svg
       className={styles.logo}
+      onClick={onClick}
       width="506"
       height="1002"
       viewBox="0 0 506 1002"
