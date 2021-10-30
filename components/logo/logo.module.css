@@ -1,0 +1,19 @@
+.logo {
+  width: 25px;
+  transition: 0.3s;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: auto;
+  z-index: 3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (min-width: 769px) {
+  .logo {
+    width: 35px;
+    top: 25px;
+    left: 30px;
+  }
+}

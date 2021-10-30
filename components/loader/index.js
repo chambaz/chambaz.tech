@@ -9,6 +9,7 @@ const Loader = (props) => {
   const [fontLoaded, setFontLoaded] = useState(false)
   const [secondaryLoad, setSecondaryLoad] = useState(false)
   const [isSafari, setIsSafari] = useState(false)
+  const [dots, setDots] = useState(0)
 
   useEffect(() => {
     if (isMobileSafari) {
@@ -30,6 +31,17 @@ const Loader = (props) => {
     })
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (dots < 3) {
+        setDots(dots + 1)
+      } else {
+        setDots(0)
+      }
+    }, 500)
+    return () => clearInterval(interval)
+  }, [dots])
+
   let cls = fontLoaded
     ? `${styles.loader} ${styles.loaderActive}`
     : styles.loader
@@ -42,12 +54,18 @@ const Loader = (props) => {
     cls += ` ${styles.loaderSafari}`
   }
 
+  let dotsStr = ''
+
+  for (let i = 0; i < dots; i++) {
+    dotsStr += '.'
+  }
+
   return (
     <div className={cls}>
       {!fontLoaded && (
         <div>
           <img className={styles.loaderLogo} src="/img/fhole.svg" />
-          <p>Loading...</p>
+          <p>Loading{dotsStr}</p>
         </div>
       )}
     </div>

@@ -2,10 +2,9 @@
   color: white;
   font-family: harmondsemibold, serif;
   font-size: 100px;
-  line-height: 1;
+  line-height: 0.9;
   margin: 0;
   opacity: 1;
-  transition: 0.5s;
 }
 
 .heading.headingGlitch {
