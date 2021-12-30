@@ -1,8 +1,8 @@
 import React, { Suspense, useState, useRef, useEffect } from 'react'
 import { disablePageScroll } from 'scroll-lock'
-import { Canvas, useResource } from 'react-three-fiber'
+import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import { EffectComposer, Glitch } from 'react-postprocessing'
+import { EffectComposer, Glitch } from '@react-three/postprocessing'
 import { GlitchMode } from 'postprocessing'
 
 import { activateDescription, deactivateDescription } from '../lib/animation'
@@ -25,7 +25,7 @@ const Home = () => {
   const canvasRef = useRef()
   const descriptionRef = useRef()
   const scrollBtnRef = useRef()
-  const camera = useResource()
+  const camera = useRef()
   const [mousePos, setMousePos] = useState({})
   const [descIsActive, setDescIsActive] = useState(false)
   const [glitchActive, setGlitchActive] = useState(false)

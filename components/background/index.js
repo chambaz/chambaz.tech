@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Canvas, useResource } from 'react-three-fiber'
+import React, { useEffect, useState, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import { EffectComposer, Noise, Vignette, Glitch } from 'react-postprocessing'
+import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 
 const Background = () => {
-  const camera = useResource()
+  const camera = useRef()
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
 
