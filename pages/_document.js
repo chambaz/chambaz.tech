@@ -50,11 +50,13 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333" />
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000"></meta>
-
           <meta
             property="og:image"
             content="https://www.chambaz.tech/share.jpg"
           />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@chambaz" />
+          <meta name="twitter:creator" content="@chambaz" />
         </Head>
         <body>
           <Main />
