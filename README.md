@@ -7,6 +7,6 @@ Portfolio site for Adam Chambers.
 ## Installation
 
 ```
-npm i
-npm run dev
+yarn install
+yarn dev
 ```
