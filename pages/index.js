@@ -71,7 +71,7 @@ const Home = () => {
   return (
     <main onMouseMove={onMove} onTouchMove={onMove}>
       <Meta
-        title="Adam Chambers - Creative Engineer"
+        title="chambaz.eth - Creative Engineer"
         description="Multi-disciplinary creative technologist, marketer, musician, and maker."
       />
       <Loader />
