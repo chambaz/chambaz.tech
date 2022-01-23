@@ -9,7 +9,13 @@ const Footer = (props) => {
   if (props.neverHide) {
     cls += ` ${styles.footerNeverHide}`
   }
-  return <footer className={cls}>Adam Chambers</footer>
+  return (
+    <footer className={cls}>
+      <a href="https://twitter.com/chambaz" target="_blank">
+        chambaz.eth
+      </a>
+    </footer>
+  )
 }
 
 export default Footer
