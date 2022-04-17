@@ -12,7 +12,7 @@ const Footer = (props) => {
   return (
     <footer className={cls}>
       <a href="https://twitter.com/chambaz" target="_blank">
-        chambaz.eth
+        @chambaz
       </a>
     </footer>
   )
