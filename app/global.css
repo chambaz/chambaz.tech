@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 ::selection {
   background-color: #47a3f3;
@@ -33,6 +33,11 @@ html {
   min-width: 360px;
 }
 
+body {
+  font-family: var(--font-geist-sans), system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
@@ -53,7 +58,7 @@ html {
 
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -89,6 +94,11 @@ html {
 
 .prose h1 {
   @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+  font-family: var(--font-instrument-serif), serif;
+}
+
+h1 {
+  font-family: var(--font-instrument-serif), serif;
 }
 
 .prose h2 {
@@ -131,8 +141,8 @@ pre {
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
