@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@paper-design/shaders-react':
+        specifier: ^0.0.55
+        version: 0.0.55(@types/react@18.2.55)(react@19.1.1)
       '@tailwindcss/postcss':
         specifier: 4.0.0-alpha.13
         version: 4.0.0-alpha.13(postcss@8.5.6)
@@ -243,6 +246,18 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@paper-design/shaders-react@0.0.55':
+    resolution: {integrity: sha512-bIxdbjg+R9Hote+xrp1Po1dFEFUsHtBKBdnU57ioWSpNxTjXP0DXQPStQkS3qmknuw8n2DErarVkDLSyJ0HzwQ==}
+    peerDependencies:
+      '@types/react': ^18 || ^19
+      react: ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@paper-design/shaders@0.0.55':
+    resolution: {integrity: sha512-9Qrt54v4bOvPsfC2o8s4dBDZJfhIsX3lCfsu/CkySbvLSTqV3x+POO51x5sEd4AFUj8DwhkF/Ai+z4hl4HGtQw==}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -1109,6 +1124,15 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@15.5.3':
     optional: true
+
+  '@paper-design/shaders-react@0.0.55(@types/react@18.2.55)(react@19.1.1)':
+    dependencies:
+      '@paper-design/shaders': 0.0.55
+      react: 19.1.1
+    optionalDependencies:
+      '@types/react': 18.2.55
+
+  '@paper-design/shaders@0.0.55': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
