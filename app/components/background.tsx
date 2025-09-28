@@ -34,7 +34,7 @@ const Background = () => {
       <MeshGradient
         width={dimensions.width}
         height={dimensions.height}
-        colors={["#ffffff", "#000000", "#00827f"]}
+        colors={["#ffffff", "#000000", "#5eead4"]}
         distortion={0.8}
         swirl={0.1}
         grainMixer={0}
