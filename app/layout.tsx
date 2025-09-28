@@ -13,15 +13,17 @@ import { baseUrl } from "./sitemap";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Next.js Portfolio Starter",
-    template: "%s | Next.js Portfolio Starter",
+    default:
+      "Adam Chambers - Product engineer, ux designer, and creative technologist",
+    template: "%s",
   },
-  description: "This is my portfolio.",
   openGraph: {
-    title: "My Portfolio",
-    description: "This is my portfolio.",
+    title:
+      "Adam Chambers - Product engineer, ux designer, and creative technologist",
+    description:
+      "Exploring the intersection of blockchain, decentralized finance, and ai.",
     url: baseUrl,
-    siteName: "My Portfolio",
+    siteName: "Adam Chambers",
     locale: "en_US",
     type: "website",
   },
@@ -63,7 +65,7 @@ export default function RootLayout({
     >
       <body className="antialiased">
         <Background />
-        <main className="relative max-w-xl mx-4 mt-8 lg:mx-auto flex-auto min-w-0 flex flex-col px-2 md:px-0 z-10">
+        <main className="relative max-w-2xl mx-4 mt-8 lg:mx-auto flex-auto min-w-0 flex flex-col px-2 md:px-0 z-10">
           <Navbar />
           {children}
           <Footer />

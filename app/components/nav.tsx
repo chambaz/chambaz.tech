@@ -5,13 +5,15 @@ const navItems = {
     name: "home",
   },
   "/blog": {
-    name: "blog",
+    name: "writing",
   },
   "https://www.0.xyz": {
     name: "project 0",
+    external: true,
   },
   "https://www.solanaui.dev": {
     name: "solanaui",
+    external: true,
   },
 };
 
@@ -24,12 +26,14 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name }]) => {
+            {Object.entries(navItems).map(([path, { name, external }]) => {
               return (
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 align-middle flex items-center gap-1 relative py-1 px-2 m-1"
                 >
                   {name}
                 </Link>

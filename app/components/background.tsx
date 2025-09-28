@@ -30,11 +30,11 @@ const Background = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 opacity-50">
+    <div className="fixed inset-0 z-0 opacity-20">
       <MeshGradient
         width={dimensions.width}
         height={dimensions.height}
-        colors={["#ffffff", "#000000", "#5eead4"]}
+        colors={["#000000", "#5eead4"]}
         distortion={0.8}
         swirl={0.1}
         grainMixer={0}

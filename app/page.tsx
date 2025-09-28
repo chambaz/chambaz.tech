@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { BlogPosts } from "app/components/posts";
+
+export const metadata: Metadata = {
+  title:
+    "Adam Chambers - Product engineer, ux designer, and creative technologist",
+  description:
+    "Exploring the intersection of blockchain, decentralized finance, and ai.",
+};
 
 export default function Page() {
   return (
