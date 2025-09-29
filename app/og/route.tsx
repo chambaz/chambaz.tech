@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     (
       <div tw="relative flex flex-col w-full h-full items-center justify-center bg-black text-white">
         <img
-          src="http://localhost:3000/img/mesh-gradiant.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/img/mesh-gradiant.png`}
           alt="Test"
           width={1200}
           height={630}

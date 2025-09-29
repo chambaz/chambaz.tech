@@ -8,10 +8,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { Background } from "./components/background";
-import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || ""),
   title: {
     default:
       "Adam Chambers - Product engineer, ux designer, and creative technologist",
@@ -22,13 +21,13 @@ export const metadata: Metadata = {
       "Adam Chambers - Product engineer, ux designer, and creative technologist",
     description:
       "Exploring the intersection of blockchain, decentralized finance, and ai.",
-    url: baseUrl,
+    url: process.env.NEXT_PUBLIC_BASE_URL,
     siteName: "Adam Chambers",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: `${baseUrl}/og`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og`,
       },
     ],
   },
