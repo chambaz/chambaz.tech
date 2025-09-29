@@ -4,6 +4,7 @@ import React from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
 
 const Background = () => {
+  const [opacity, setOpacity] = React.useState(0);
   const [dimensions, setDimensions] = React.useState({
     width: 1280,
     height: 720,
@@ -23,6 +24,10 @@ const Background = () => {
     // Add resize event listener
     window.addEventListener("resize", updateDimensions);
 
+    setTimeout(() => {
+      setOpacity(0.2);
+    }, 100);
+
     // Cleanup event listener on unmount
     return () => {
       window.removeEventListener("resize", updateDimensions);
@@ -30,7 +35,10 @@ const Background = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 opacity-20">
+    <div
+      className="fixed inset-0 z-0 transition-opacity duration-3000"
+      style={{ opacity }}
+    >
       <MeshGradient
         width={dimensions.width}
         height={dimensions.height}

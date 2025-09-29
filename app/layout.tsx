@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     siteName: "Adam Chambers",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${baseUrl}/og`,
+      },
+    ],
   },
   robots: {
     index: true,
