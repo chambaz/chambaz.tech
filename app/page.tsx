@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BlogPosts } from "app/components/posts";
+import { Projects } from "app/components/projects";
 
 export const metadata: Metadata = {
   title: "Adam Chambers - Product engineer, ux designer, creative technologist",
@@ -16,8 +17,9 @@ export default function Page() {
         <br className="md:block hidden" /> Exploring the intersection of
         blockchain, decentralized finance, and ai.
       </p>
-      <div className="my-8">
+      <div className="mt-8">
         <BlogPosts />
+        <Projects />
       </div>
     </section>
   );

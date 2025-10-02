@@ -5,7 +5,8 @@ export function BlogPosts() {
   let allBlogs = getBlogPosts();
 
   return (
-    <div>
+    <div className="space-y-2 mt-8">
+      <h2 className="text-xl font-medium tracking-tight">Writing</h2>
       {allBlogs
         .sort((a, b) => {
           if (
@@ -18,7 +19,7 @@ export function BlogPosts() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
+            className="flex flex-col space-y-1"
             href={`/blog/${post.slug}`}
           >
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
