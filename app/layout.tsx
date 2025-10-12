@@ -73,10 +73,8 @@ export default function RootLayout({
 
         <main className="relative max-w-4xl mx-auto flex flex-col px-4 z-10 min-h-screen">
           <Navbar />
-          <div className="flex flex-col justify-center flex-1">
-            {children}
-            <Footer />
-          </div>
+          {children}
+          <Footer />
           <Analytics />
           <SpeedInsights />
         </main>

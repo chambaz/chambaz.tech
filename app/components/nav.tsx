@@ -15,10 +15,7 @@ const navItems: Record<string, { name: string; external?: boolean }> = {
 
 export function Navbar() {
   return (
-    <nav
-      className="flex flex-row items-start absolute top-0 left-0 pt-8 px-4"
-      id="nav"
-    >
+    <nav className="flex flex-row items-start pt-8 pb-16" id="nav">
       <div className="flex flex-row gap-8">
         {Object.entries(navItems).map(([path, { name, external }]) => {
           return (
