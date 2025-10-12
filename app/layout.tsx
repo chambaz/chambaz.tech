@@ -6,8 +6,8 @@ import { Instrument_Serif } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "./components/footer";
-import { Background } from "./components/background";
+import { Footer } from "./components/footer";
+import { Mesh, Grid } from "./components/background/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || ""),
@@ -68,11 +68,15 @@ export default function RootLayout({
       )}
     >
       <body className="antialiased">
-        <Background />
-        <main className="relative max-w-3xl mx-4 mt-8 lg:mx-auto flex-auto min-w-0 flex flex-col px-2 md:px-0 z-10">
+        <Mesh />
+        <Grid />
+
+        <main className="relative max-w-4xl mx-auto flex flex-col px-4 z-10 min-h-screen">
           <Navbar />
-          {children}
-          <Footer />
+          <div className="flex flex-col justify-center flex-1">
+            {children}
+            <Footer />
+          </div>
           <Analytics />
           <SpeedInsights />
         </main>

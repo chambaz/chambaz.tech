@@ -15,7 +15,7 @@ function ArrowIcon() {
   );
 }
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className="my-8">
       <ul className="font-sm mt-8 flex flex-row space-x-4 text-neutral-600 dark:text-neutral-300">
@@ -92,4 +92,6 @@ export default function Footer() {
       </ul>
     </footer>
   );
-}
+};
+
+export { Footer };

@@ -16,7 +16,7 @@ const navItems: Record<string, { name: string; external?: boolean }> = {
 export function Navbar() {
   return (
     <nav
-      className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto md:relative mb-12"
+      className="flex flex-row items-start absolute top-0 left-0 pt-8 px-4"
       id="nav"
     >
       <div className="flex flex-row gap-8">

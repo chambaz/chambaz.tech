@@ -1,0 +1,629 @@
+"use client";
+
+import type React from "react";
+
+import { useState, useEffect, useRef, type ChangeEvent } from "react";
+
+// Define a type for animated ASCII characters
+type AnimatedChar = {
+  char: string;
+  color: string;
+  originalX: number;
+  originalY: number;
+  currentX: number;
+  currentY: number;
+  velocityX: number;
+  velocityY: number;
+  floatOffsetX: number;
+  floatOffsetY: number;
+};
+
+const Model = () => {
+  // Add this at the beginning of the component, right after the imports
+  useEffect(() => {
+    // Set document background to black
+    if (typeof document !== "undefined") {
+      document.documentElement.style.backgroundColor = "black";
+      document.body.style.backgroundColor = "black";
+    }
+
+    return () => {
+      // Clean up when component unmounts
+      if (typeof document !== "undefined") {
+        document.documentElement.style.backgroundColor = "";
+        document.body.style.backgroundColor = "";
+      }
+    };
+  }, []);
+  const [resolution, setResolution] = useState(0.17);
+  const [inverted, setInverted] = useState(false);
+  const [grayscale, setGrayscale] = useState(true);
+  const [charSet, setCharSet] = useState("standard");
+  const [loading, setLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [asciiArt, setAsciiArt] = useState<string>("");
+  const [animatedChars, setAnimatedChars] = useState<AnimatedChar[]>([]);
+  const [leftPanelWidth, setLeftPanelWidth] = useState(25); // percentage
+  const [isDragging, setIsDragging] = useState(false);
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [sidebarNarrow, setSidebarNarrow] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const asciiContainerRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number>();
+  // Add a new ref for the output canvas
+  const outputCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  const charSets = {
+    standard: " .:-=+*#%@",
+    detailed: " .,:;i1tfLCG08@",
+    blocks: " ░▒▓█",
+    minimal: " .:█",
+  };
+
+  // Set hydration state
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+
+    // Check if we're on the client side
+    setIsDesktop(window.innerWidth >= 768);
+
+    // Add resize listener
+    const handleResize = () => {
+      const newIsDesktop = window.innerWidth >= 768;
+      setIsDesktop(newIsDesktop);
+
+      // Reset panel width if switching between mobile and desktop
+      if (newIsDesktop !== isDesktop) {
+        setLeftPanelWidth(25); // Reset to default when switching layouts
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Load default image
+    loadDefaultImage();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isDesktop, isHydrated]);
+
+  // Check if sidebar is narrow
+  useEffect(() => {
+    if (!isHydrated || !isDesktop) return;
+
+    // Check if sidebar is narrow (less than 200px)
+    const checkSidebarWidth = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        const sidebarWidth = (leftPanelWidth / 100) * containerWidth;
+        setSidebarNarrow(sidebarWidth < 350);
+      }
+    };
+
+    checkSidebarWidth();
+
+    // Add resize listener to check sidebar width
+    window.addEventListener("resize", checkSidebarWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkSidebarWidth);
+    };
+  }, [leftPanelWidth, isHydrated, isDesktop]);
+
+  useEffect(() => {
+    if (imageLoaded && imageRef.current) {
+      convertToAscii();
+    }
+  }, [resolution, inverted, grayscale, charSet, imageLoaded]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging && containerRef.current) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const newLeftWidth =
+          ((e.clientX - containerRect.left) / containerRect.width) * 100;
+
+        // Limit the minimum width of each panel to 20%
+        if (newLeftWidth >= 20 && newLeftWidth <= 80) {
+          setLeftPanelWidth(newLeftWidth);
+        }
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging]);
+
+  const startDragging = () => {
+    setIsDragging(true);
+  };
+
+  const loadDefaultImage = () => {
+    setLoading(true);
+    setError(null);
+    setImageLoaded(false);
+
+    // Create a new image element
+    const img = new Image();
+    // Remove crossOrigin for local images to avoid CORS issues
+    // img.crossOrigin = "anonymous";
+
+    img.onload = () => {
+      if (img.width === 0 || img.height === 0) {
+        setError("Invalid image dimensions");
+        setLoading(false);
+        return;
+      }
+
+      imageRef.current = img;
+      setImageLoaded(true);
+      setLoading(false);
+    };
+
+    img.onerror = () => {
+      setError("Failed to load image from /img/ascii2.png");
+      setLoading(false);
+    };
+
+    // Set the source after setting up event handlers
+    img.src = "/img/ascii2.png";
+  };
+
+  const loadImage = (src: string) => {
+    setLoading(true);
+    setError(null);
+    setImageLoaded(false);
+
+    // Create a new image element
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+
+    img.onload = () => {
+      if (img.width === 0 || img.height === 0) {
+        setError("Invalid image dimensions");
+        setLoading(false);
+        return;
+      }
+
+      imageRef.current = img;
+      setImageLoaded(true);
+      setLoading(false);
+    };
+
+    img.onerror = () => {
+      setError("Failed to load image");
+      setLoading(false);
+    };
+
+    // Set the source after setting up event handlers
+    img.src = src;
+  };
+
+  const handleFileUpload = (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      setError("Please upload an image file");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (e.target?.result) {
+        loadImage(e.target.result as string);
+      }
+    };
+    reader.onerror = () => {
+      setError("Failed to read file");
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFileUpload(e.target.files[0]);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDraggingFile(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDraggingFile(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDraggingFile(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files[0]);
+    }
+  };
+
+  // Helper function to adjust color brightness
+  const adjustColorBrightness = (
+    r: number,
+    g: number,
+    b: number,
+    factor: number
+  ): string => {
+    // Ensure the colors are visible against black background
+    const minBrightness = 40; // Minimum brightness to ensure visibility
+    r = Math.max(Math.min(Math.round(r * factor), 255), minBrightness);
+    g = Math.max(Math.min(Math.round(g * factor), 255), minBrightness);
+    b = Math.max(Math.min(Math.round(b * factor), 255), minBrightness);
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  // Canvas rendering function for animated ASCII
+  const renderToCanvas = () => {
+    if (!outputCanvasRef.current || animatedChars.length === 0) return;
+
+    const canvas = outputCanvasRef.current;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Calculate font size to make the ASCII art take up full viewport height
+    const targetHeight = window.innerHeight;
+    const estimatedRows = asciiArt.split("\n").length;
+    const fontSize = Math.max(Math.floor(targetHeight / estimatedRows), 8);
+
+    // Set canvas dimensions based on original layout (not current positions)
+    const charWidth = fontSize * 0.6;
+    const lineHeight = fontSize;
+
+    // Calculate fixed canvas size based on original character positions
+    let maxOriginalX = 0,
+      maxOriginalY = 0;
+    animatedChars.forEach((char) => {
+      maxOriginalX = Math.max(maxOriginalX, char.originalX + charWidth);
+      maxOriginalY = Math.max(maxOriginalY, char.originalY + lineHeight);
+    });
+
+    canvas.width = maxOriginalX;
+    canvas.height = maxOriginalY;
+
+    // Clear canvas with transparent background
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Set font properties
+    ctx.font = `${fontSize}px monospace`;
+    ctx.textBaseline = "top";
+
+    // Render each animated character with padding offset
+    animatedChars.forEach((char) => {
+      ctx.fillStyle = char.color;
+      ctx.fillText(char.char, char.currentX, char.currentY);
+    });
+  };
+
+  // Animation loop for floating and repel effects
+  useEffect(() => {
+    if (!imageLoaded || animatedChars.length === 0) return;
+
+    const animate = () => {
+      // Update character positions
+      setAnimatedChars((prevChars) =>
+        prevChars.map((char) => {
+          const time = Date.now() * 0.001; // Convert to seconds
+
+          // More aggressive floating animation with varied speeds
+          const timeVariation = time * (1 + char.floatOffsetX * 0.3); // Each char has slightly different speed
+          const floatX = Math.sin(timeVariation + char.floatOffsetX) * 6; // Increased from 2 to 6
+          const floatY = Math.cos(timeVariation * 1.5 + char.floatOffsetY) * 4; // Increased from 1.5 to 4, speed from 0.8 to 1.5
+
+          let targetX = char.originalX + floatX;
+          let targetY = char.originalY + floatY;
+
+          // Mouse repel effect
+          if (isHovering && asciiContainerRef.current) {
+            const containerRect =
+              asciiContainerRef.current.getBoundingClientRect();
+            const charScreenX = containerRect.left + char.currentX;
+            const charScreenY = containerRect.top + char.currentY;
+
+            const dx = mousePosition.x - charScreenX;
+            const dy = mousePosition.y - charScreenY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const repelRadius = 150; // Increased from 100 to 150
+
+            if (distance < repelRadius) {
+              const force = (repelRadius - distance) / repelRadius;
+              const repelX = (dx / distance) * force * -30; // Increased from -30 to -60
+              const repelY = (dy / distance) * force * -30; // Increased from -30 to -60
+
+              targetX = char.originalX + floatX + repelX;
+              targetY = char.originalY + floatY + repelY;
+            }
+          }
+
+          // Smooth movement towards target
+          const ease = 0.05;
+          const newVelocityX = (targetX - char.currentX) * ease;
+          const newVelocityY = (targetY - char.currentY) * ease;
+
+          return {
+            ...char,
+            currentX: char.currentX + newVelocityX,
+            currentY: char.currentY + newVelocityY,
+            velocityX: newVelocityX,
+            velocityY: newVelocityY,
+          };
+        })
+      );
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [imageLoaded, animatedChars.length, isHovering, mousePosition]);
+
+  // Separate effect to render canvas whenever animatedChars changes
+  useEffect(() => {
+    renderToCanvas();
+  }, [animatedChars]);
+
+  // Mouse tracking
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const convertToAscii = () => {
+    try {
+      if (!canvasRef.current || !imageRef.current) {
+        throw new Error("Canvas or image not available");
+      }
+
+      const img = imageRef.current;
+
+      // Validate image dimensions
+      if (img.width === 0 || img.height === 0) {
+        throw new Error("Invalid image dimensions");
+      }
+
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        throw new Error("Could not get canvas context");
+      }
+
+      // Calculate dimensions based on resolution
+      const width = Math.floor(img.width * resolution);
+      const height = Math.floor(img.height * resolution);
+
+      // Set canvas dimensions to match the image
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Clear the canvas first
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw image to canvas
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+
+      // Get image data - this is where the error was occurring
+      let imageData;
+      try {
+        imageData = ctx.getImageData(0, 0, img.width, img.height);
+      } catch (e) {
+        throw new Error(
+          "Failed to get image data. This might be a CORS issue."
+        );
+      }
+
+      const data = imageData.data;
+
+      // Choose character set
+      const chars = charSets.standard;
+
+      // Calculate aspect ratio correction for monospace font
+      const fontAspect = 0.5; // Width/height ratio of monospace font characters
+      const widthStep = Math.ceil(img.width / width);
+      const heightStep = Math.ceil(img.height / height / fontAspect);
+
+      // Calculate font size for proper scaling
+      const targetHeight = window.innerHeight; // 80% of viewport height
+      const estimatedRows = Math.ceil(img.height / heightStep);
+      const fontSize = Math.max(Math.floor(targetHeight / estimatedRows), 6); // Minimum 6px
+      const charWidth = fontSize * 0.6;
+      const lineHeight = fontSize;
+
+      let result = "";
+      const newAnimatedChars: AnimatedChar[] = [];
+      let rowIndex = 0;
+
+      // Process the image
+      for (let y = 0; y < img.height; y += heightStep) {
+        let colIndex = 0;
+
+        for (let x = 0; x < img.width; x += widthStep) {
+          const pos = (y * img.width + x) * 4;
+
+          const r = data[pos];
+          const g = data[pos + 1];
+          const b = data[pos + 2];
+
+          // Calculate brightness based on grayscale setting
+          let brightness;
+          if (grayscale) {
+            // Standard grayscale calculation
+            brightness = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
+          } else {
+            // Color-aware brightness (perceived luminance)
+            brightness = Math.sqrt(
+              0.299 * (r / 255) * (r / 255) +
+                0.587 * (g / 255) * (g / 255) +
+                0.114 * (b / 255) * (b / 255)
+            );
+          }
+
+          // Invert if needed
+          if (inverted) brightness = 1 - brightness;
+
+          // Map brightness to character
+          const charIndex = Math.floor(brightness * (chars.length - 1));
+          const char = chars[charIndex];
+
+          // Skip spaces to reduce DOM elements
+          if (char !== " ") {
+            const originalX = colIndex * charWidth;
+            const originalY = rowIndex * lineHeight;
+
+            // Create animated character with random floating offset
+            const animatedChar: AnimatedChar = {
+              char,
+              color: grayscale
+                ? "white"
+                : adjustColorBrightness(
+                    r,
+                    g,
+                    b,
+                    (charIndex / (chars.length - 1)) * 1.5 + 0.5
+                  ),
+              originalX,
+              originalY,
+              currentX: originalX,
+              currentY: originalY,
+              velocityX: 0,
+              velocityY: 0,
+              floatOffsetX: Math.random() * 6 - 3, // Random float between -3 and 3 (increased from -1 to 1)
+              floatOffsetY: Math.random() * 6 - 3, // More variation in starting positions
+            };
+
+            newAnimatedChars.push(animatedChar);
+          }
+
+          result += char;
+          colIndex++;
+        }
+
+        result += "\n";
+        rowIndex++;
+      }
+
+      setAsciiArt(result);
+      setAnimatedChars(newAnimatedChars);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error occurred");
+      setAsciiArt("");
+      setAnimatedChars([]);
+    }
+  };
+
+  const downloadAsciiArt = () => {
+    if (!asciiArt) {
+      setError("No ASCII art to download");
+      return;
+    }
+
+    const element = document.createElement("a");
+    const file = new Blob([asciiArt], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = "ascii-art.txt";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
+  return (
+    <div className="fixed top-0 right-0 z-20 min-h-screen text-white opacity-20">
+      <div
+        ref={containerRef}
+        className="flex flex-col md:flex-row min-h-screen overflow-hidden select-none"
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
+        {/* ASCII Art Preview - Top on mobile, Right on desktop */}
+        <div
+          ref={previewRef}
+          className="order-1 md:order-2 flex-1 bg-transparent overflow-auto flex items-center justify-end relative p-4"
+          style={{
+            ...(isHydrated && isDesktop
+              ? {
+                  width: `${100 - leftPanelWidth}%`,
+                  marginLeft: `${leftPanelWidth}%`,
+                }
+              : {}),
+          }}
+        >
+          {/* Hidden canvas for image processing */}
+          <canvas ref={canvasRef} style={{ display: "none" }} />
+
+          {loading ? (
+            <div className="text-white font-mono select-none">
+              Loading image...
+            </div>
+          ) : error ? (
+            <div className="text-red-400 font-mono p-4 text-center select-none">
+              {error}
+              <div className="mt-2 text-white text-sm">
+                Try uploading a different image or refreshing the page.
+              </div>
+            </div>
+          ) : (
+            <div
+              ref={asciiContainerRef}
+              className="relative select-text font-mono z-30"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+              style={{
+                height: "100vh",
+                width: "50vw",
+                marginLeft: "auto",
+              }}
+            >
+              <canvas
+                ref={outputCanvasRef}
+                className="max-w-full select-text"
+                style={{
+                  backgroundColor: "transparent",
+                }}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export { Model };
