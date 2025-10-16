@@ -15,7 +15,7 @@ export default function Page() {
       <section>
         <h1 className="mb-2 text-7xl tracking-tighter">Adam Chambers</h1>
         <p className="text-zinc-400 leading-loose">
-          Product engineer, ux designer, and creative technologist.
+          Product engineer, ux strategist, and creative technologist.
           <br className="md:block hidden" /> Exploring the intersection of
           blockchain, defi, and ai.
         </p>

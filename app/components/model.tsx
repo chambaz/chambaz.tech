@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState, useEffect, useRef, type ChangeEvent } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Define a type for animated ASCII characters
 type AnimatedChar = {
@@ -19,159 +19,61 @@ type AnimatedChar = {
 };
 
 const Model = () => {
-  // Add this at the beginning of the component, right after the imports
+  // Set document background to black for portfolio
   useEffect(() => {
-    // Set document background to black
     if (typeof document !== "undefined") {
       document.documentElement.style.backgroundColor = "black";
       document.body.style.backgroundColor = "black";
     }
 
     return () => {
-      // Clean up when component unmounts
       if (typeof document !== "undefined") {
         document.documentElement.style.backgroundColor = "";
         document.body.style.backgroundColor = "";
       }
     };
   }, []);
-  const [resolution, setResolution] = useState(0.17);
-  const [inverted, setInverted] = useState(false);
-  const [grayscale, setGrayscale] = useState(true);
-  const [charSet, setCharSet] = useState("standard");
+
+  // Fixed configuration for portfolio background
+  const resolution = 0.17;
+
   const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [asciiArt, setAsciiArt] = useState<string>("");
   const [animatedChars, setAnimatedChars] = useState<AnimatedChar[]>([]);
-  const [leftPanelWidth, setLeftPanelWidth] = useState(25); // percentage
-  const [isDragging, setIsDragging] = useState(false);
-  const [isDraggingFile, setIsDraggingFile] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [sidebarNarrow, setSidebarNarrow] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
   const asciiContainerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
-  // Add a new ref for the output canvas
   const outputCanvasRef = useRef<HTMLCanvasElement>(null);
-
-  const charSets = {
-    standard: " .:-=+*#%@",
-    detailed: " .,:;i1tfLCG08@",
-    blocks: " ░▒▓█",
-    minimal: " .:█",
-  };
-
-  // Set hydration state
+  // Initialize component
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
   useEffect(() => {
     if (!isHydrated) return;
-
-    // Check if we're on the client side
-    setIsDesktop(window.innerWidth >= 768);
-
-    // Add resize listener
-    const handleResize = () => {
-      const newIsDesktop = window.innerWidth >= 768;
-      setIsDesktop(newIsDesktop);
-
-      // Reset panel width if switching between mobile and desktop
-      if (newIsDesktop !== isDesktop) {
-        setLeftPanelWidth(25); // Reset to default when switching layouts
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Load default image
     loadDefaultImage();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isDesktop, isHydrated]);
-
-  // Check if sidebar is narrow
-  useEffect(() => {
-    if (!isHydrated || !isDesktop) return;
-
-    // Check if sidebar is narrow (less than 200px)
-    const checkSidebarWidth = () => {
-      if (containerRef.current) {
-        const containerWidth = containerRef.current.clientWidth;
-        const sidebarWidth = (leftPanelWidth / 100) * containerWidth;
-        setSidebarNarrow(sidebarWidth < 350);
-      }
-    };
-
-    checkSidebarWidth();
-
-    // Add resize listener to check sidebar width
-    window.addEventListener("resize", checkSidebarWidth);
-
-    return () => {
-      window.removeEventListener("resize", checkSidebarWidth);
-    };
-  }, [leftPanelWidth, isHydrated, isDesktop]);
+  }, [isHydrated]);
 
   useEffect(() => {
     if (imageLoaded && imageRef.current) {
       convertToAscii();
     }
-  }, [resolution, inverted, grayscale, charSet, imageLoaded]);
+  }, [imageLoaded]);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (isDragging && containerRef.current) {
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const newLeftWidth =
-          ((e.clientX - containerRect.left) / containerRect.width) * 100;
-
-        // Limit the minimum width of each panel to 20%
-        if (newLeftWidth >= 20 && newLeftWidth <= 80) {
-          setLeftPanelWidth(newLeftWidth);
-        }
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDragging]);
-
-  const startDragging = () => {
-    setIsDragging(true);
-  };
-
+  // Load default image for portfolio background
   const loadDefaultImage = () => {
     setLoading(true);
     setError(null);
     setImageLoaded(false);
 
-    // Create a new image element
     const img = new Image();
-    // Remove crossOrigin for local images to avoid CORS issues
-    // img.crossOrigin = "anonymous";
 
     img.onload = () => {
       if (img.width === 0 || img.height === 0) {
@@ -190,95 +92,7 @@ const Model = () => {
       setLoading(false);
     };
 
-    // Set the source after setting up event handlers
     img.src = "/img/ascii2.png";
-  };
-
-  const loadImage = (src: string) => {
-    setLoading(true);
-    setError(null);
-    setImageLoaded(false);
-
-    // Create a new image element
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-
-    img.onload = () => {
-      if (img.width === 0 || img.height === 0) {
-        setError("Invalid image dimensions");
-        setLoading(false);
-        return;
-      }
-
-      imageRef.current = img;
-      setImageLoaded(true);
-      setLoading(false);
-    };
-
-    img.onerror = () => {
-      setError("Failed to load image");
-      setLoading(false);
-    };
-
-    // Set the source after setting up event handlers
-    img.src = src;
-  };
-
-  const handleFileUpload = (file: File) => {
-    if (!file.type.startsWith("image/")) {
-      setError("Please upload an image file");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      if (e.target?.result) {
-        loadImage(e.target.result as string);
-      }
-    };
-    reader.onerror = () => {
-      setError("Failed to read file");
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      handleFileUpload(e.target.files[0]);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDraggingFile(true);
-  };
-
-  const handleDragLeave = () => {
-    setIsDraggingFile(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDraggingFile(false);
-
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFileUpload(e.dataTransfer.files[0]);
-    }
-  };
-
-  // Helper function to adjust color brightness
-  const adjustColorBrightness = (
-    r: number,
-    g: number,
-    b: number,
-    factor: number
-  ): string => {
-    // Ensure the colors are visible against black background
-    const minBrightness = 40; // Minimum brightness to ensure visibility
-    r = Math.max(Math.min(Math.round(r * factor), 255), minBrightness);
-    g = Math.max(Math.min(Math.round(g * factor), 255), minBrightness);
-    b = Math.max(Math.min(Math.round(b * factor), 255), minBrightness);
-    return `rgb(${r}, ${g}, ${b})`;
   };
 
   // Canvas rendering function for animated ASCII
@@ -355,8 +169,8 @@ const Model = () => {
 
             if (distance < repelRadius) {
               const force = (repelRadius - distance) / repelRadius;
-              const repelX = (dx / distance) * force * -30; // Increased from -30 to -60
-              const repelY = (dy / distance) * force * -30; // Increased from -30 to -60
+              const repelX = (dx / distance) * force * -60; // Increased from -30 to -60
+              const repelY = (dy / distance) * force * -60; // Increased from -30 to -60
 
               targetX = char.originalX + floatX + repelX;
               targetY = char.originalY + floatY + repelY;
@@ -450,8 +264,8 @@ const Model = () => {
 
       const data = imageData.data;
 
-      // Choose character set
-      const chars = charSets.standard;
+      // Choose character set - using standard for portfolio
+      const chars = " .:-=+*#%@";
 
       // Calculate aspect ratio correction for monospace font
       const fontAspect = 0.5; // Width/height ratio of monospace font characters
@@ -459,9 +273,9 @@ const Model = () => {
       const heightStep = Math.ceil(img.height / height / fontAspect);
 
       // Calculate font size for proper scaling
-      const targetHeight = window.innerHeight; // 80% of viewport height
+      const targetHeight = window.innerHeight;
       const estimatedRows = Math.ceil(img.height / heightStep);
-      const fontSize = Math.max(Math.floor(targetHeight / estimatedRows), 6); // Minimum 6px
+      const fontSize = Math.max(Math.floor(targetHeight / estimatedRows), 6);
       const charWidth = fontSize * 0.6;
       const lineHeight = fontSize;
 
@@ -480,22 +294,8 @@ const Model = () => {
           const g = data[pos + 1];
           const b = data[pos + 2];
 
-          // Calculate brightness based on grayscale setting
-          let brightness;
-          if (grayscale) {
-            // Standard grayscale calculation
-            brightness = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
-          } else {
-            // Color-aware brightness (perceived luminance)
-            brightness = Math.sqrt(
-              0.299 * (r / 255) * (r / 255) +
-                0.587 * (g / 255) * (g / 255) +
-                0.114 * (b / 255) * (b / 255)
-            );
-          }
-
-          // Invert if needed
-          if (inverted) brightness = 1 - brightness;
+          // Calculate brightness using standard grayscale calculation
+          const brightness = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
 
           // Map brightness to character
           const charIndex = Math.floor(brightness * (chars.length - 1));
@@ -509,22 +309,15 @@ const Model = () => {
             // Create animated character with random floating offset
             const animatedChar: AnimatedChar = {
               char,
-              color: grayscale
-                ? "white"
-                : adjustColorBrightness(
-                    r,
-                    g,
-                    b,
-                    (charIndex / (chars.length - 1)) * 1.5 + 0.5
-                  ),
+              color: "white", // Fixed to white for portfolio background
               originalX,
               originalY,
               currentX: originalX,
               currentY: originalY,
               velocityX: 0,
               velocityY: 0,
-              floatOffsetX: Math.random() * 6 - 3, // Random float between -3 and 3 (increased from -1 to 1)
-              floatOffsetY: Math.random() * 6 - 3, // More variation in starting positions
+              floatOffsetX: Math.random() * 6 - 3,
+              floatOffsetY: Math.random() * 6 - 3,
             };
 
             newAnimatedChars.push(animatedChar);
@@ -548,43 +341,10 @@ const Model = () => {
     }
   };
 
-  const downloadAsciiArt = () => {
-    if (!asciiArt) {
-      setError("No ASCII art to download");
-      return;
-    }
-
-    const element = document.createElement("a");
-    const file = new Blob([asciiArt], { type: "text/plain" });
-    element.href = URL.createObjectURL(file);
-    element.download = "ascii-art.txt";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
-
   return (
-    <div className="fixed top-0 right-0 z-20 min-h-screen text-white opacity-20">
-      <div
-        ref={containerRef}
-        className="flex flex-col md:flex-row min-h-screen overflow-hidden select-none"
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        {/* ASCII Art Preview - Top on mobile, Right on desktop */}
-        <div
-          ref={previewRef}
-          className="order-1 md:order-2 flex-1 bg-transparent overflow-auto flex items-center justify-end relative p-4"
-          style={{
-            ...(isHydrated && isDesktop
-              ? {
-                  width: `${100 - leftPanelWidth}%`,
-                  marginLeft: `${leftPanelWidth}%`,
-                }
-              : {}),
-          }}
-        >
+    <div className="fixed top-0 right-0 z-20 min-h-screen text-white opacity-50">
+      <div className="min-h-screen overflow-hidden select-none">
+        <div className="flex-1 bg-transparent overflow-hidden flex items-center justify-center relative">
           {/* Hidden canvas for image processing */}
           <canvas ref={canvasRef} style={{ display: "none" }} />
 
@@ -596,26 +356,22 @@ const Model = () => {
             <div className="text-red-400 font-mono p-4 text-center select-none">
               {error}
               <div className="mt-2 text-white text-sm">
-                Try uploading a different image or refreshing the page.
+                Try refreshing the page.
               </div>
             </div>
           ) : (
             <div
               ref={asciiContainerRef}
-              className="relative select-text font-mono z-30"
+              className="relative select-text font-mono xl:-left-24 z-30 md:-top-12 w-screen md:w-[70vw] lg:w-[60vw] xl:w-[40vw] h-[100vh] flex items-center justify-center"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              style={{
-                height: "100vh",
-                width: "50vw",
-                marginLeft: "auto",
-              }}
             >
               <canvas
                 ref={outputCanvasRef}
-                className="max-w-full select-text"
+                className="max-w-full max-h-full select-text"
                 style={{
                   backgroundColor: "transparent",
+                  objectFit: "contain",
                 }}
               />
             </div>

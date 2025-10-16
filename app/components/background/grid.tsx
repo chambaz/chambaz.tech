@@ -1,15 +1,14 @@
 "use client";
 
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import React from "react";
 
 const Grid = () => {
-  const gridCanvasRef = useRef<HTMLCanvasElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const gridAnimationFrameRef = useRef<number>();
-  const timeRef = useRef(0);
+  const gridCanvasRef = React.useRef<HTMLCanvasElement>(null);
+  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
+  const gridAnimationFrameRef = React.useRef<number>();
+  const timeRef = React.useRef(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const updateDimensions = () => {
       setDimensions({
         width: window.innerWidth,
@@ -23,7 +22,7 @@ const Grid = () => {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const gridCanvas = gridCanvasRef.current;
     if (!gridCanvas || dimensions.width === 0) return;
 

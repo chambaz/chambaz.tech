@@ -24,7 +24,7 @@ export function Navbar() {
               href={path}
               target={external ? "_blank" : undefined}
               rel={external ? "noopener noreferrer" : undefined}
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 align-middle flex items-center gap-1 relative py-1"
+              className="transition-all hover:text-neutral-200 align-middle flex items-center gap-1 relative py-1"
             >
               {name}
             </Link>
