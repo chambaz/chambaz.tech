@@ -6,7 +6,7 @@ type ProjectProps = {
 
 export function Projects({ title = true }: ProjectProps) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-4 md:space-y-2">
       {title && (
         <h2 className="text-xl font-medium tracking-tight">Projects</h2>
       )}
@@ -24,7 +24,7 @@ export function Projects({ title = true }: ProjectProps) {
       </Link>
       <Link
         className="flex flex-col space-y-1"
-        href="https://www.0.xyz"
+        href="https://www.solanaui.dev"
         target="_blank"
         rel="noopener noreferrer"
       >

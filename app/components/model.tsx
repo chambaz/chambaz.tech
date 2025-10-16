@@ -342,22 +342,15 @@ const Model = () => {
   };
 
   return (
-    <div className="fixed top-0 right-0 z-20 min-h-screen text-white opacity-50">
+    <div className="fixed top-0 right-5 md:right-0 -z-10 md:z-20 min-h-screen text-white opacity-50">
       <div className="min-h-screen overflow-hidden select-none">
         <div className="flex-1 bg-transparent overflow-hidden flex items-center justify-center relative">
           {/* Hidden canvas for image processing */}
           <canvas ref={canvasRef} style={{ display: "none" }} />
 
           {loading ? (
-            <div className="text-white font-mono select-none">
-              Loading image...
-            </div>
-          ) : error ? (
-            <div className="text-red-400 font-mono p-4 text-center select-none">
-              {error}
-              <div className="mt-2 text-white text-sm">
-                Try refreshing the page.
-              </div>
+            <div className="hidden md:flex text-white font-mono select-none items-center justify-center h-screen w-[50vw]">
+              <p>Loading moel...</p>
             </div>
           ) : (
             <div

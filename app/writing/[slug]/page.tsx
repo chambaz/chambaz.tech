@@ -84,7 +84,9 @@ export default async function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title text-6xl tracking-tighter">{post.metadata.title}</h1>
+      <h1 className="title text-5xl md:text-6xl tracking-tighter">
+        {post.metadata.title}
+      </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-neutral-400">
           {formatDate(post.metadata.publishedAt)}

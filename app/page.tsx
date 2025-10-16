@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="flex flex-col justify-center flex-1 -mt-28">
+    <div className="flex flex-col justify-center flex-1 md:-mt-28">
       <div>
-        <h1 className="mb-2 text-7xl tracking-tighter">Adam Chambers</h1>
-        <p className="text-zinc-400 leading-loose">
+        <h1 className="mb-2 text-6xl md:text-7xl tracking-tighter">
+          Adam Chambers
+        </h1>
+        <p className="text-zinc-400 leading-relaxed md:leading-loose">
           Product engineer, ux strategist, and creative technologist.
           <br className="md:block hidden" /> Exploring the intersection of
           blockchain, defi, and ai.
