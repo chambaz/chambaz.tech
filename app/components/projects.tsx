@@ -1,9 +1,15 @@
 import Link from "next/link";
 
-export function Projects() {
+type ProjectProps = {
+  title?: boolean;
+};
+
+export function Projects({ title = true }: ProjectProps) {
   return (
     <div className="space-y-2">
-      <h2 className="text-xl font-medium tracking-tight">Projects</h2>
+      {title && (
+        <h2 className="text-xl font-medium tracking-tight">Projects</h2>
+      )}
       <Link
         className="flex flex-col space-y-1"
         href="https://www.0.xyz"

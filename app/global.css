@@ -109,7 +109,8 @@ h1 {
 
 .prose h2 {
   @apply text-white;
-  @apply text-2xl font-medium tracking-tight mt-12;
+  @apply text-4xl font-medium tracking-tight mt-12;
+  font-family: var(--font-instrument-serif), serif;
 }
 
 .prose h3 {

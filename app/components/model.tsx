@@ -88,11 +88,11 @@ const Model = () => {
     };
 
     img.onerror = () => {
-      setError("Failed to load image from /img/ascii2.png");
+      setError("Failed to load image");
       setLoading(false);
     };
 
-    img.src = "/img/ascii2.png";
+    img.src = "/img/chambaz.png";
   };
 
   // Canvas rendering function for animated ASCII

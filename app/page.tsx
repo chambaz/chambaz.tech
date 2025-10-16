@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="flex flex-col justify-center flex-1 -mt-28">
-      <section>
+      <div>
         <h1 className="mb-2 text-7xl tracking-tighter">Adam Chambers</h1>
         <p className="text-zinc-400 leading-loose">
           Product engineer, ux strategist, and creative technologist.
@@ -24,7 +24,7 @@ export default function Page() {
           <Projects />
         </div>
         <Model />
-      </section>
+      </div>
     </div>
   );
 }

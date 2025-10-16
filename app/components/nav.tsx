@@ -4,7 +4,7 @@ const navItems: Record<string, { name: string; external?: boolean }> = {
   "/": {
     name: "home",
   },
-  "/blog": {
+  "/writing": {
     name: "writing",
   },
   "https://x.com/chambaz": {

@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import { formatDate, getBlogPosts } from "app/writing/utils";
 
-export function BlogPosts() {
+type BlogPostProps = {
+  title?: boolean;
+};
+
+export function BlogPosts({ title = true }: BlogPostProps) {
   let allBlogs = getBlogPosts();
 
   return (
     <div className="space-y-2 mt-8">
-      <h2 className="text-xl font-medium tracking-tight">Writing</h2>
+      {title && <h2 className="text-xl font-medium tracking-tight">Writing</h2>}
       {allBlogs
         .sort((a, b) => {
           if (
