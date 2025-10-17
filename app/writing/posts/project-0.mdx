@@ -4,27 +4,25 @@ publishedAt: "2025-09-28"
 summary: "Rethinking DeFi UX to deliver the first cross-venue, unified margin experience."
 ---
 
-DeFi has no shortage of lending markets, perps, aggregators, and more. Most of them look and feel the same. What it doesn’t have is a trustless prime broker. That’s what Project 0 is: the first generalized, on-chain, permissionless, multi-venue, unified margin protocol.
+DeFi has no shortage of lending markets, perps, aggregators, and swaps. Most of them look and feel the same. What it doesn’t have is a trustless prime broker. That’s what Project 0 is: the first permissionless, cross-collateral, multi-venue, unified margin protocol. Allowing users to borrow, lend, and trade across venues as if it were one account. One portfolio, one risk system, many markets.
 
-Building something new for DeFi meant designing something new for users. There was no template for cross-collateralized, multi-venue margin. No playbook for surfacing risk across Kamino, Drift, Jupiter, and more in one unified portfolio. We had to invent the UX for a new financial primitive.
+Building something new for DeFi meant designing something new for users. There was no template for cross-collateral, multi-venue margin. No playbook for visualizing risk across Kamino, Drift, Jupiter, and more, in one unified portfolio. We had to invent the UX for a new financial primitive.
 
-[The vision was set](https://blog.0.xyz/blog/introducing-project-0). Our job was to turn that vision into a product people could use and trust. That meant burning down years of design, UX, and technical debt. It meant setting a strict performance budget — web2 speed for web3 — and refusing to compromise. And it meant bringing design and engineering together to re-architect an experience as new as the protocol itself.
+[The vision was set](https://blog.0.xyz/blog/introducing-project-0). Now we had to turn that vision into a product people could trust. That meant burning down design, UX, and technical debt. It meant setting a strict performance budget, and refusing to compromise. And it meant bringing design and engineering together to architect a brand new experience.
 
 ## The Hidden Debt We Had to Burn Down
 
-As we’ve [already outlined](https://blog.0.xyz/blog/introducing-project-0), last year was defined by debt: infrastructure, operational, organizational. But there was another just as critical: design debt.
+As we’ve [already outlined](https://blog.0.xyz/blog/introducing-project-0), last year was defined by debt: technical, operational, organizational. But there was another just as critical: design debt.
 
-The original marginfi app was built years ago, long before Project 0 was imagined. When the protocol began scaling, we had to keep shipping on top of that fragile foundation. During those months we moved fast and layered fixes, features, and patches wherever we could. It kept the protocol running, but it left us with fragmented interfaces, inconsistent flows, and a system never designed for what we were asking of it.
+The original marginfi ui was built a while back, long before Project 0 was imagined. During those tumultuous months we moved fast and layered fixes, features, and patches wherever we could. It kept the protocol running, but it left us with fragmented interfaces, inconsistent flows, and a system never designed for what we were asking of it.
 
-With Project 0, patching wasn’t an option, we rebuilt from zero: a new design system, a new application architecture, built around clarity and speed. We weren’t just cleaning up debt. We were redefining how DeFi should feel.
+With Project 0, patching wasn’t an option, we rebuilt from zero: a new design system, a new application architecture, built around clarity and speed. We weren’t just cleaning up debt, we were redefining how DeFi should operate.
 
-### Designing for a Net-New Concept
+## Designing for a Net-New Concept
 
 Most DeFi products borrow familiar patterns. Lending looks like lending. Perps look like perps. With Project 0, there were none.
 
-A trustless prime broker didn’t exist. Cross-collateralized, multi-venue margin was new territory. We weren’t just designing an interface. We were creating a user experience for an entirely new product category.
-
-The challenge was simple: make power feel simple.
+Cross-collateralized, multi-venue margin was new territory. We weren’t just designing an interface, we were defining an experience for an entirely new product category.
 
 We had to solve for:
 
@@ -32,52 +30,50 @@ We had to solve for:
 - **Unified borrowing**: making borrowing against an entire portfolio feel as seamless as borrowing on a single venue.
 - **Advanced strategies**: enabling cross-venue looping and delta-neutral positioning natively, without overcomplicating for casual users or oversimplifying for sophisticated traders.
 
-Each of these required invention, not iteration. We weren’t polishing an existing app, we were building a UX system capable of introducing unified margin to DeFi for the first time.
+Each of these required invention, not iteration.
 
 ## Our Principles: Clarity, Confidence, Composability, Performance
 
-When you’re designing for a new product category, principles matter. They’re how you make the unfamiliar feel natural. For Project 0, we set four:
+When you’re building a new product, principles matter. For Project 0, we set four:
 
-- **Clarity**: Collapse multi-venue complexity into one clean, understandable portfolio view.
-- **Confidence**: Risk is only manageable if it’s visible. In DeFi, UX is the front door to your risk engine.
+- **Clarity**: Collapse multi-venue complexity into one clean, understandable view.
+- **Confidence**: Risk is only manageable if visible. UX is the front door to your risk engine.
 - **Composability**: DeFi isn’t siloed, and our UX couldn’t be either. Project 0 unifies Kamino, Drift, Jupiter, and more into one seamless experience. That includes cross-venue looping — a strategy that now feels native and intuitive.
-- **Performance**: Web3 should feel like web2. No excuses. No waiting. Only speed.
+- **Performance**: Web3 should feel like best-in-class web2. No excuses. Only speed.
 
 These weren’t slogans. They were daily constraints. And they’re the reason Project 0 feels simple, fast, and composable from day one.
 
 ## Web3 at Web2 Speed
 
-Web3 apps are notorious for being slow and clunky. We refused to accept that. From day one, Project 0 was designed to move with the speed users expect from the best products in Web2.
+Web3 apps are notorious for being slow and clunky. We refused to accept that. Project 0 was designed to move with the speed users expect from the best products in Web2.
 
-On marginfi, everything was client-side. Data queried directly onchain via RPC. Simulations and transactions ran in the client. It worked, but at the cost of performance.
+In many crypto apps, data is fetched and parsed client-side, queried directly onchain via RPC. Simulations and transactions are run in the client. It works but at the cost of performance.
 
 With Project 0, we rebuilt around a server-first stack:
 
 - **SSR \+ React Server Components**: indexed data is fetched and rendered on the server before it ever hits the client.
 - **Database-first design**: banks, rates, portfolio data and more, are indexed in a high-performance database, not pulled raw from RPC.
-- **Edge execution**: simulations and transactions run on serverless functions distributed across Vercel’s edge.
+- **Edge execution**: simulations and transactions run in distributed serverless functions.
 - **Smart caching**: instant loads with background rehydration to keep data fresh.
 
-The result: blitzing load times. The app opens instantly with data in place. Interactions feel immediate.
+The result is blitzing load times. The app opens instantly with data in place. Interactions feel immediate.
 
 And the benefits go further. SSR makes Project 0 legible to search engines and to LLMs, the new crawlers. That opens a new path for discovery, where AI systems can index, understand, and route users into the protocol.
 
-These techniques are best practice in Web2 but rare in Web3. On-chain data is hard to query, RPCs are difficult to index, and most teams focus elsewhere. We chose speed as a first principle, because the future of DeFi has to feel as fast as the future of finance.
+These techniques are best practice in Web2 but rare in Web3. We chose speed as a first principle, because the future of finance has to be fast.
 
 ## From Principles to Product
 
-Principles only matter if you can execute them. For Project 0, that meant bringing design and application engineering into one high-velocity unit.
+Principles only matter if you can execute. For Project 0, that meant bringing design and application engineering into one high-velocity unit.
 
-We weren’t just designing flows. We were re-architecting the application while shipping at the pace crypto demands. Every feature had to meet our bar for clarity, composability, and speed.
+That’s where the team made the difference. Designers and engineers worked side by side, testing and iterating in real time. We built and scrapped prototypes quickly. We obsessed over the details, because in DeFi especially, the details are the difference.
 
-That’s where the team made the difference. Designers and engineers worked side by side, testing and iterating in real time. We built and scrapped prototypes quickly. We obsessed over small details, because in a trustless prime broker, small details are the difference between control and confusion.
-
-That is what we mean when we say design was a differentiator for Project 0\.
+That is what we mean when we say design was a differentiator for Project 0.
 
 ## Looking Forward
 
-Project 0 isn’t a new interface on top of an old primitive. It’s a new UX for DeFi. For the first time, users can experience unified margin and cross-venue collateral in a way that feels intuitive, fast, and trustworthy.
+Project 0 isn’t a new interface on top of an old primitive. It’s a new UX for DeFi. For the first time, users can experience unified margin and cross-venue collateral in a way that feels intuitive and fast.
 
-This matters because UX in crypto isn’t just about polish. It’s infrastructure. The way users see and act on risk is as important as the math behind the protocol. The way flows feel determines whether people trust a system enough to use it at scale.
+This matters because UX in crypto isn’t just about polish. It’s infrastructure. The way users see and act on risk is as important as the math behind the protocol.
 
-We’re proud of what we built. But this is just v0. The future of DeFi experiences starts here.
+It’s a new foundation and a new frontier. The first true multi-venue margin experience in crypto. We’re proud of what we built, but this is just v0. The future of DeFi experiences starts here.
