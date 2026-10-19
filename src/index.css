@@ -1,0 +1,77 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --font-sans: 'InterVariable', sans-serif;
+  --font-sans--font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+}
+@layer base {
+  :root {
+    --paper: #f6f5f0;
+    --ink: #262922;
+    --muted: #64665e;
+    --accent: #45624a;
+    --surface: #e9ebe3;
+    color-scheme: light;
+  }
+  :root.dark {
+    --paper: #1b1d1a;
+    --ink: #efeee7;
+    --muted: #adafa5;
+    --accent: #acc4a3;
+    --surface: #242822;
+    color-scheme: dark;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+  body {
+    @apply m-0 min-w-80 bg-paper font-sans text-ink antialiased;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+@utility page-width {
+  @apply mx-auto w-[calc(100%-3rem)] max-w-6xl sm:w-[calc(100%-6rem)];
+}
+@utility eyebrow {
+  @apply font-mono text-xs tracking-wide text-muted uppercase;
+}
+@utility nav-link {
+  @apply underline-offset-4 hover:text-accent hover:underline;
+}
+.tooling-line:nth-child(2),
+.tooling-line:nth-child(4) {
+  transform: translateY(-1.5rem);
+}
+.tooling-line:nth-child(3) {
+  transform: translateY(1.5rem);
+  background: var(--accent);
+  border-color: var(--accent);
+}

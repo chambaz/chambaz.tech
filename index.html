@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Adam Chambers — engineering, developer experience, and decentralized applications."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Adam Chambers — Developer & Agentic Experience</title>
+    <script>
+      ;(() => {
+        let theme
+        try {
+          theme = localStorage.getItem('portfolio-theme-v1')
+        } catch {}
+        document.documentElement.classList.toggle(
+          'dark',
+          theme === 'dark' ||
+            (theme !== 'light' &&
+              matchMedia('(prefers-color-scheme: dark)').matches),
+        )
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript
+      ><p>
+        Adam Chambers works at the intersection of developer experience, AI
+        agents, and decentralized applications. Enable JavaScript to view this
+        portfolio.
+      </p></noscript
+    >
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
