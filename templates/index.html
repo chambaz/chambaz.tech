@@ -8,7 +8,7 @@
       <div class="hero-copy relative z-10 flex min-w-0 flex-col items-start gap-8 lg:pointer-events-none lg:col-span-6 lg:col-start-1 lg:row-start-1">
         <h1 id="intro-title" class="pointer-events-auto max-w-[20ch] font-display text-6xl tracking-tight text-balance sm:text-7xl xl:text-8xl">Experience Engineering</h1>
         <p class="pointer-events-auto max-w-[45ch] text-xl/8 text-pretty text-muted sm:text-lg/8 [&_a]:underline [&_a]:decoration-ink/30 [&_a]:underline-offset-4 [&_a:hover]:text-accent">{{ profile.intro | markdown(inline=true) | safe }}</p>
-        <a class="group pointer-events-auto inline-flex min-h-12 items-center hover:text-accent" href="#work"><span class="inline-flex items-center gap-5 border-b border-ink/60 pb-1 group-hover:border-accent">Explore my work <span aria-hidden="true">↓</span></span></a>
+        <a class="pointer-events-auto inline-flex min-h-12 items-center hover:text-accent" href="#work"><span class="inline-flex items-center gap-5 pb-1">Explore my work <span aria-hidden="true">↓</span></span></a>
       </div>
       {% include "partials/life.html" %}
     </div>
@@ -19,7 +19,7 @@
     <div class="flex flex-wrap items-end justify-between gap-4">
       <h2 id="work-title" class="font-display text-5xl tracking-tight text-balance sm:text-6xl">Recent work.</h2>
       {% for social in profile.socials %}{% if social.icon == "github" %}
-      <a href="{{ social.url }}" class="group inline-flex min-h-12 items-center hover:text-accent"><span class="inline-flex items-center gap-5 border-b border-ink/60 pb-1 group-hover:border-accent">View GitHub <span aria-hidden="true">↗</span></span></a>
+      <a href="{{ social.url }}" class="inline-flex min-h-12 items-center hover:text-accent"><span class="inline-flex items-center gap-5 pb-1">View GitHub <span aria-hidden="true">↗</span></span></a>
       {% endif %}{% endfor %}
     </div>
     <div class="mt-12 divide-y divide-ink/15 border-t border-ink/15">
