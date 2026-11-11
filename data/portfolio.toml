@@ -1,0 +1,41 @@
+[profile]
+intro = "Creative engineer focussed on blockchain technology and decentralized applications. Currently building [Project Thruput](https://www.thruput.network) at [Stellar Development Foundation](https://stellar.org/)."
+role = "Leading developer experience for Groundhog at the Stellar Development Foundation."
+about = "I work on the tools and experiences that help people build on next-generation blockchains."
+background = "My background spans hands-on engineering and technology leadership, from digital products to decentralized infrastructure. Today, my focus is developer and agentic experience."
+previous = ["Digital Surgeons", "Metaplex", "Lasso Labs", "Marginfi"]
+socials = [
+  { label = "X", icon = "x", url = "https://x.com/chambaz" },
+  { label = "LinkedIn", icon = "linkedin", url = "https://www.linkedin.com/in/adamchambaz/" },
+  { label = "GitHub", icon = "github", url = "https://github.com/chambaz" },
+]
+
+[[projects]]
+title = "Project Thruput"
+description = "Blockchain technology built for abundance. Our mission is to make smart contracts free and compute abundant."
+url = "https://www.thruput.network"
+github = "https://github.com/thruputchain"
+
+[[projects]]
+title = "PayMVC"
+description = "Smart contract platform explorer and test harness for blockchain developers. Inspired by the original [TodoMVC](https://todomvc.com/)."
+url = "https://www.paymvc.com"
+github = "https://github.com/chambaz/paymvc"
+
+[[projects]]
+title = "Chain of Life"
+description = "Configurable onchain implementation of Conway's Game of Life. Built to demonstrate Thruput heavy compute capabilities."
+url = ""
+github = "https://github.com/chambaz/chainoflife"
+
+[[projects]]
+title = "WUI"
+description = "Solana terminal wallet, for humans and AI agents."
+url = "https://www.wui.money"
+github = "https://github.com/chambaz/wui"
+
+[[projects]]
+title = "SolanaUI"
+description = "Beautifully designed UI components and AI Agent tooling for Solana builders"
+url = "https://www.solanaui.dev"
+github = "https://github.com/chambaz"

@@ -10,6 +10,13 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+public/
+static/css/site.css
+static/js/generated/
+test-results/
+playwright-report/
+.preview/
+.preview-test/
 *.local
 
 # Editor directories and files

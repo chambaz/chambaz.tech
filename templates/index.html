@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+{% set portfolio = load_data(path="data/portfolio.toml") %}
+{% set profile = portfolio.profile %}
+<section aria-labelledby="intro-title" class="hero-section pt-8 pb-12 lg:py-0">
+  <div class="page-width">
+    <div class="hero-stage grid items-start gap-10 lg:grid-cols-12 lg:items-center lg:gap-0">
+      <div class="hero-copy relative z-10 flex min-w-0 flex-col items-start gap-8 lg:pointer-events-none lg:col-span-6 lg:col-start-1 lg:row-start-1">
+        <h1 id="intro-title" class="pointer-events-auto max-w-[20ch] font-display text-6xl tracking-tight text-balance sm:text-7xl xl:text-8xl">Experience Engineering</h1>
+        <p class="pointer-events-auto max-w-[45ch] text-xl/8 text-pretty text-muted sm:text-lg/8 [&_a]:underline [&_a]:decoration-ink/30 [&_a]:underline-offset-4 [&_a:hover]:text-accent">{{ profile.intro | markdown(inline=true) | safe }}</p>
+        <a class="group pointer-events-auto inline-flex min-h-12 items-center hover:text-accent" href="#work"><span class="inline-flex items-center gap-5 border-b border-ink/60 pb-1 group-hover:border-accent">Explore my work <span aria-hidden="true">↓</span></span></a>
+      </div>
+      {% include "partials/life.html" %}
+    </div>
+  </div>
+</section>
+<section id="work" aria-labelledby="work-title" class="py-14 sm:py-22">
+  <div class="page-width">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="work-title" class="font-display text-5xl tracking-tight text-balance sm:text-6xl">Recent work.</h2>
+      {% for social in profile.socials %}{% if social.icon == "github" %}
+      <a href="{{ social.url }}" class="group inline-flex min-h-12 items-center hover:text-accent"><span class="inline-flex items-center gap-5 border-b border-ink/60 pb-1 group-hover:border-accent">View GitHub <span aria-hidden="true">↗</span></span></a>
+      {% endif %}{% endfor %}
+    </div>
+    <div class="mt-12 divide-y divide-ink/15 border-t border-ink/15">
+      {% for project in portfolio.projects %}
+      <article class="flex min-w-0 flex-col gap-4 py-8 sm:py-10">
+        <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+          <h3 class="max-w-[35ch] font-display text-3xl tracking-tight text-pretty sm:text-4xl">{% if project.url %}<a href="{{ project.url }}" class="hover:text-accent">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</h3>
+          {% include "partials/project-links.html" %}
+        </div>
+        <p class="max-w-[56ch] text-base/7 text-pretty text-muted [&_a]:underline [&_a]:decoration-ink/30 [&_a]:underline-offset-4 [&_a:hover]:text-accent">{{ project.description | markdown(inline=true) | safe }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section id="writing" aria-labelledby="writing-title" class="py-14 sm:py-22">
+  {% set writing = get_section(path="writing/_index.md") %}
+  <div class="page-width">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="writing-title" class="font-display text-5xl tracking-tight text-balance sm:text-6xl">Writing.</h2>
+      {% if not config.extra.writing_coming_soon %}<a href="{{ writing.permalink }}" class="inline-flex min-h-12 items-center gap-3 underline decoration-ink/30 underline-offset-4 hover:text-accent">View all articles <span aria-hidden="true">→</span></a>{% endif %}
+    </div>
+    {% if config.extra.writing_coming_soon %}
+    <p class="mt-12 max-w-[56ch] text-base/7 text-pretty text-muted">Essays on decentralized applications, smart contracts, agentic engineering, and more, coming soon...</p>
+    {% elif writing.pages %}
+    <ol role="list" class="mt-12 divide-y divide-ink/15 border-t border-ink/15">
+      {% for post in writing.pages %}
+      {% if loop.index <= 3 %}
+      <li class="py-8 sm:py-10">
+        <article class="flex min-w-0 flex-col gap-4">
+          <h3 class="max-w-[35ch] font-display text-3xl tracking-tight text-pretty sm:text-4xl"><a class="hover:text-accent" href="{{ post.permalink }}">{{ post.title }}</a></h3>
+          <p class="text-base text-muted sm:text-sm"><time datetime="{{ post.date }}">{{ post.date | date(format="%d %B %Y") }}</time>{% if post.draft %} · Draft{% endif %}</p>
+          <p class="max-w-[56ch] text-base/7 text-pretty text-muted">{{ post.description }}</p>
+        </article>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="mt-12 border-t border-ink/15 pt-8 text-base/7 text-muted">No essays published yet. There’s room for a first thought.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock content %}

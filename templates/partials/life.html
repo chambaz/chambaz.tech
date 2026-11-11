@@ -1,0 +1,42 @@
+<figure id="life" class="min-w-0" aria-labelledby="life-caption">
+  <div class="relative aspect-[6/5]" data-life-stage role="group" aria-label="Interactive Game of Life grid" aria-describedby="life-help">
+    <div class="life-fallback absolute inset-0" aria-hidden="true">
+      <div class="life-fallback-grid">
+        {% for i in range(end=320) %}
+        <span class="{% if i in [47, 68, 86, 87, 88, 115, 116, 135, 136, 182, 183, 202, 203, 230, 231, 232, 250, 251, 252] %}life-alive{% endif %}"></span>
+        {% endfor %}
+      </div>
+    </div>
+    <div data-life-intro hidden class="life-intro pointer-events-none absolute z-10 flex flex-col items-center justify-center gap-2 px-6 text-center">
+      <div class="flex flex-col items-center gap-1">
+        <h2 class="font-display text-3xl tracking-tight text-balance sm:text-4xl">Conway's Game of Life</h2>
+        <p class="max-w-[32ch] text-base/7 text-pretty text-muted sm:text-sm/6">Draw to seed the game</p>
+      </div>
+      <div class="text-base text-muted sm:text-sm">
+        <button type="button" data-life-random class="pointer-events-auto min-h-12 underline underline-offset-4 hover:text-ink">Random seed</button>
+      </div>
+    </div>
+  </div>
+  <figcaption id="life-caption" class="relative flex flex-col gap-3 border-t border-ink/15 pt-4">
+    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+      <p class="eyebrow">Conway’s Game of Life</p>
+      <div class="flex flex-wrap items-center gap-x-6 text-base text-muted sm:text-sm">
+        <p data-life-generation class="text-muted tabular-nums">A study in emergence</p>
+        <button type="button" data-life-reset hidden class="relative underline underline-offset-4 hover:text-ink" aria-label="Start a new Game of Life world">Reset world<span aria-hidden="true" class="absolute top-1/2 left-1/2 size-[max(100%,3rem)] -translate-1/2 pointer-fine:hidden"></span></button>
+      </div>
+    </div>
+    <p data-life-status class="sr-only">Static preview</p>
+  </figcaption>
+  <p id="life-help" data-life-help hidden class="sr-only"><span>Drag to draw.</span><span></span></p>
+</figure>
+<script>
+  // Hide the static preview before paint while the interactive board loads.
+  document.querySelector('#life').dataset.reveal = 'loading'
+  document.querySelector('#life .life-fallback').hidden = true
+  document.querySelector('#life figcaption').classList.add('invisible')
+  import("{{ get_url(path='js/generated/life.js', cachebust=true) | safe }}").catch(() => {
+    document.querySelector('#life').dataset.reveal = 'ready'
+    document.querySelector('#life .life-fallback').hidden = false
+    document.querySelector('#life figcaption').classList.remove('invisible')
+  })
+</script>

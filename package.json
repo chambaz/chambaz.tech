@@ -2,31 +2,31 @@
   "name": "chambaz.tech",
   "private": true,
   "version": "0.0.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@heroicons/react": "^2.2.0",
-    "@tailwindcss/vite": "^4.3.3",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "tailwindcss": "^4.3.3"
+    "css": "tailwindcss -i styles/site.css -o static/css/site.css --minify",
+    "js": "esbuild scripts/life/index.js --bundle --format=esm --splitting --minify --outdir=static/js/generated --entry-names=life",
+    "assets": "npm run css && npm run js",
+    "build": "npm run assets && zola build",
+    "dev": "npm run assets && concurrently --kill-others \"tailwindcss -i styles/site.css -o static/css/site.css --watch\" \"npm run js -- --watch\" \"zola serve --interface 0.0.0.0 --port 5173 --drafts --extra-watch-path data --output-dir .preview --force\"",
+    "preview": "npm run assets && zola serve --interface 0.0.0.0 --port 5173 --output-dir .preview --force",
+    "check": "npm run assets && zola check",
+    "lint": "oxlint static/js/site.js static/js/theme.js scripts tests playwright.config.js",
+    "test": "npm run build && playwright test"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
-    "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
+    "@tailwindcss/cli": "^4.3.3",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.28.2",
     "oxlint": "^1.81.0",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "typescript": "~6.0.2",
-    "vite": "^8.3.0"
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "three": "^0.187.0"
   }
 }

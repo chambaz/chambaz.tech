@@ -1,0 +1,16 @@
+<div class="flex shrink-0 items-center">
+  {% if project.url %}
+  <a href="{{ project.url }}" aria-label="{{ project.title }} website" title="{{ project.title }} website" class="flex h-12 w-12 items-center justify-center text-muted hover:text-accent pointer-fine:w-9">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-5 shrink-0">
+      <circle cx="12" cy="12" r="9"/>
+      <ellipse cx="12" cy="12" rx="4.5" ry="9"/>
+      <path d="M3 12h18M5 6.5c4 3 10 3 14 0M5 17.5c4-3 10-3 14 0"/>
+    </svg>
+  </a>
+  {% endif %}
+  <a href="{{ project.github }}" aria-label="{{ project.title }} on GitHub" title="{{ project.title }} on GitHub" class="flex h-12 w-12 items-center justify-center text-muted hover:text-accent pointer-fine:w-9">
+    <svg aria-hidden="true" viewBox="0 0 24 24" class="size-4.5 shrink-0 fill-current">
+      {% include "partials/github-path.html" %}
+    </svg>
+  </a>
+</div>

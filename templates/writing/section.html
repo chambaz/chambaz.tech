@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="py-18 sm:py-24" aria-labelledby="writing-title">
+  <div class="page-width">
+    <p class="eyebrow">Notes &amp; essays</p>
+    <h1 id="writing-title" class="mt-6 font-display text-6xl tracking-tight text-balance sm:text-8xl">{{ section.title }}.</h1>
+    <p class="mt-8 max-w-[56ch] text-base/8 text-pretty text-muted">{{ section.description }}</p>
+    {% if paginator.pages %}
+    <ol role="list" class="mt-16 divide-y divide-ink/15 border-t border-ink/15">
+      {% for post in paginator.pages %}
+      <li class="py-8">
+        <article class="flex min-w-0 flex-col gap-4">
+          <h2 class="max-w-[35ch] font-display text-4xl tracking-tight text-pretty"><a class="hover:text-accent" href="{{ post.permalink }}">{{ post.title }}</a></h2>
+          <p class="text-base text-muted sm:text-sm"><time datetime="{{ post.date }}">{{ post.date | date(format="%d %B %Y") }}</time>{% if post.draft %} · Draft{% endif %}</p>
+          <p class="max-w-[56ch] text-base/7 text-pretty text-muted">{{ post.description }}</p>
+        </article>
+      </li>
+      {% endfor %}
+    </ol>
+    {% if paginator.number_pagers > 1 %}<nav aria-label="Writing pages" class="mt-8 flex flex-wrap justify-between gap-6">{% if paginator.previous %}<a class="nav-link" href="{{ paginator.previous }}">← Newer essays</a>{% endif %}<p>Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</p>{% if paginator.next %}<a class="nav-link" href="{{ paginator.next }}">Older essays →</a>{% endif %}</nav>{% endif %}
+    {% else %}<p class="mt-16 border-t border-ink/15 pt-8 text-base/7 text-muted">No essays published yet. There’s room for a first thought.</p>{% endif %}
+    <p class="mt-12 text-base sm:text-sm"><a class="nav-link" href="{{ get_url(path='writing/atom.xml') }}">Subscribe via Atom ↗</a></p>
+  </div>
+</section>
+{% endblock content %}

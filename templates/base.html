@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if page %}
+      {% set title = page.title ~ " - " ~ config.title %}
+      {% set description = page.description | default(value=config.description) %}
+    {% elif section %}
+      {% if section.path == "/" %}
+        {% set title = section.title %}
+      {% else %}
+        {% set title = section.title ~ " - " ~ config.title %}
+      {% endif %}
+      {% set description = section.description | default(value=config.description) %}
+    {% else %}
+      {% set title = "Page not found - " ~ config.title %}
+      {% set description = config.description %}
+    {% endif %}
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="color-scheme" content="light dark">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
+    {% if current_url %}<link rel="canonical" href="{{ current_url | safe }}"><meta property="og:url" content="{{ current_url | safe }}">{% endif %}
+    {% if page and page.draft %}<meta name="robots" content="noindex, nofollow">{% endif %}
+    {% if page and page.date %}<meta property="article:published_time" content="{{ page.date }}">{% endif %}
+    <link rel="icon" href="data:,">
+    <link rel="alternate" type="application/atom+xml" title="Adam Chambers — Writing" href="{{ get_url(path='writing/atom.xml') }}">
+    <script src="{{ get_url(path='js/theme.js') }}"></script>
+    <link rel="stylesheet" href="{{ get_url(path='css/site.css', cachebust=true) }}">
+    <link rel="stylesheet" href="{{ get_url(path='giallo-light.css') }}" id="syntax-light" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ get_url(path='giallo-dark.css') }}" id="syntax-dark" media="(prefers-color-scheme: dark)">
+    <script src="{{ get_url(path='js/site.js') }}" defer></script>
+  </head>
+  <body class="isolate">
+    <a href="#main" class="fixed top-3 left-3 z-50 -translate-y-24 bg-ink px-4 py-3 text-paper focus:translate-y-0">Skip to content</a>
+    {% include "partials/header.html" %}
+    <main id="main" tabindex="-1">{% block content %}{% endblock content %}</main>
+    {% include "partials/footer.html" %}
+  </body>
+</html>

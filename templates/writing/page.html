@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="py-18 sm:py-24">
+  <div class="page-width">
+    <p class="text-base sm:text-sm"><a class="nav-link" href="{{ get_url(path='writing/') }}">← All writing</a></p>
+    {% if page.draft %}<p class="mt-8 border-l-2 border-accent pl-4 text-base/7 text-muted">Draft preview · This essay is excluded from the production build.</p>{% endif %}
+    <h1 class="mt-10 max-w-[24ch] font-display text-5xl tracking-tight text-pretty sm:text-7xl">{{ page.title }}</h1>
+    <p class="mt-6 max-w-[56ch] text-base/8 text-pretty text-muted">{{ page.description }}</p>
+    <p class="mt-6 text-base text-muted sm:text-sm"><time datetime="{{ page.date }}">{{ page.date | date(format="%d %B %Y") }}</time> · {{ page.reading_time }} min read</p>
+    <div class="prose mt-12 max-w-[68ch] border-t border-ink/15 pt-10">{{ page.content | safe }}</div>
+    <p class="mt-16 text-base sm:text-sm"><a class="nav-link" href="{{ get_url(path='writing/') }}">← Back to writing</a></p>
+  </div>
+</article>
+{% endblock content %}

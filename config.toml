@@ -1,0 +1,26 @@
+base_url = "https://www.chambaz.tech"
+title = "Adam Chambers"
+description = "Creative engineering focussed on blockchain technology and decentralized applications."
+author = "Adam Chambers"
+default_language = "en"
+compile_sass = false
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+[markdown]
+smart_punctuation = true
+bottom_footnotes = true
+
+[markdown.highlighting]
+style = "class"
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+[extra]
+writing_coming_soon = true
+# Confirm this domain and all draft portfolio copy before launch.
+navigation = [
+  { label = "Work", path = "/#work" },
+  { label = "Writing", path = "/#writing" },
+]
