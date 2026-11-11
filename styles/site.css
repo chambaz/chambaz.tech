@@ -307,15 +307,19 @@
     right: calc(-1 * (var(--hero-bleed) + var(--hero-shift)));
     top: 50%;
     width: max(calc(92% + var(--hero-bleed)), 70vw);
+    max-width: 80rem;
     transform: translateY(-50%);
   }
   .hero-stage [data-life-stage] {
     aspect-ratio: auto;
-    height: clamp(24rem, calc(100svh - 10rem), 60rem);
+    height: clamp(24rem, calc(100svh - 10rem), 48rem);
   }
   .hero-stage figcaption {
-    margin-left: 24%;
-    margin-right: calc(var(--hero-bleed) + var(--hero-shift));
+    width: min(calc(100vw - 6rem), 72rem);
+    margin-left: calc(
+      100% - var(--hero-bleed) - var(--hero-shift) -
+        min(calc(100vw - 6rem), 72rem)
+    );
   }
   [data-life-stage] canvas,
   .life-fallback {

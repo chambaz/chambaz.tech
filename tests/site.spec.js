@@ -20,7 +20,9 @@ test('production excludes drafts and includes a usable writing index and feed', 
     expect(readFileSync(file, 'utf8')).not.toContain('Your first essay')
     expect(readFileSync(file, 'utf8')).not.toContain('/first-essay/')
   }
-  expect(readFileSync('public/index.html', 'utf8')).toContain('Experience Engineering')
+  expect(readFileSync('public/index.html', 'utf8')).toContain(
+    'Experience Engineering',
+  )
   expect(readFileSync('public/index.html', 'utf8')).not.toContain('/src/')
   expect(readFileSync('public/index.html', 'utf8')).not.toContain(
     '/first-essay/',
@@ -153,6 +155,27 @@ for (const width of [375, 1440]) {
     await expect(
       page.getByRole('link', { name: 'View all articles' }),
     ).toHaveCount(0)
+  })
+}
+
+for (const viewport of [
+  { width: 2560, height: 1440 },
+  { width: 3440, height: 1440 },
+  { width: 5120, height: 1440 },
+]) {
+  test(`the board stays bounded and its caption aligns with content at ${viewport.width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport)
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/')
+    const board = await page.locator('[data-life-stage]').boundingBox()
+    const caption = await page.locator('#life figcaption').boundingBox()
+    const content = await page.locator('#work .page-width').boundingBox()
+    expect(board.width).toBeLessThanOrEqual(1280)
+    expect(board.height).toBeLessThanOrEqual(768)
+    expect(Math.abs(caption.x - content.x)).toBeLessThan(1)
+    expect(Math.abs(caption.width - content.width)).toBeLessThan(1)
   })
 }
 
