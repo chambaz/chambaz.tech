@@ -76,6 +76,10 @@ Run `npm run js` to bundle the code; Zola copies the assets into the static site
 
 Confirm `base_url` in `config.toml` (currently `https://www.chambaz.tech`). Run `npm ci` and `npm run build`, then publish `public/` to any static host. Configure the host to serve `404.html` for missing pages. No application server is needed.
 
+Railway builds the root `Dockerfile` on pushes to `main`. The build stage installs Node.js and Zola; the runtime uses Caddy to serve only the generated files. Caddy listens on Railway's `PORT` (8080 locally), serves the custom 404 page, and redirects `chambaz.tech` to `www.chambaz.tech`. Railway handles HTTPS.
+
+To test the container locally, run `docker build -t chambaz-tech .`, then `docker run --rm -p 8080:8080 chambaz-tech` and open http://localhost:8080.
+
 ## License
 
 The site's code and technical documentation are licensed under the [MIT License](LICENSE). You can use, modify, and redistribute them, including for commercial projects, provided you retain the copyright and license notice.

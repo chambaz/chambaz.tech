@@ -1,0 +1,20 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+	header Cache-Control "no-cache"
+
+	@apex host chambaz.tech
+	redir @apex https://www.chambaz.tech{uri} permanent
+
+	file_server
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}

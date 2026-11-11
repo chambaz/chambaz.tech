@@ -34,7 +34,7 @@
   document.querySelector('#life').dataset.reveal = 'loading'
   document.querySelector('#life .life-fallback').hidden = true
   document.querySelector('#life figcaption').classList.add('invisible')
-  import("{{ get_url(path='js/generated/life.js', cachebust=true) | safe }}").catch(() => {
+  import("{{ get_url(path='js/generated/life.js', cachebust=true) | replace(from=config.base_url, to='') | safe }}").catch(() => {
     document.querySelector('#life').dataset.reveal = 'ready'
     document.querySelector('#life .life-fallback').hidden = false
     document.querySelector('#life figcaption').classList.remove('invisible')

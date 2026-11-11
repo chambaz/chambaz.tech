@@ -28,11 +28,11 @@
     {% if page and page.date %}<meta property="article:published_time" content="{{ page.date }}">{% endif %}
     <link rel="icon" href="data:,">
     <link rel="alternate" type="application/atom+xml" title="Adam Chambers — Writing" href="{{ get_url(path='writing/atom.xml') }}">
-    <script src="{{ get_url(path='js/theme.js') }}"></script>
-    <link rel="stylesheet" href="{{ get_url(path='css/site.css', cachebust=true) }}">
-    <link rel="stylesheet" href="{{ get_url(path='giallo-light.css') }}" id="syntax-light" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ get_url(path='giallo-dark.css') }}" id="syntax-dark" media="(prefers-color-scheme: dark)">
-    <script src="{{ get_url(path='js/site.js') }}" defer></script>
+    <script src="/js/theme.js"></script>
+    <link rel="stylesheet" href="{{ get_url(path='css/site.css', cachebust=true) | replace(from=config.base_url, to='') }}">
+    <link rel="stylesheet" href="/giallo-light.css" id="syntax-light" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="/giallo-dark.css" id="syntax-dark" media="(prefers-color-scheme: dark)">
+    <script src="/js/site.js" defer></script>
   </head>
   <body class="isolate">
     <a href="#main" class="fixed top-3 left-3 z-50 -translate-y-24 bg-ink px-4 py-3 text-paper focus:translate-y-0">Skip to content</a>
