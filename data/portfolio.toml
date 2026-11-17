@@ -19,13 +19,13 @@ github = "https://github.com/thruputchain"
 [[projects]]
 title = "PayMVC"
 description = "Smart contract platform explorer and test harness for blockchain developers. Inspired by the original [TodoMVC](https://todomvc.com/)."
-url = "https://www.paymvc.com"
+url = "https://paymvc.com"
 github = "https://github.com/chambaz/paymvc"
 
 [[projects]]
 title = "Chain of Life"
 description = "Configurable onchain implementation of Conway's Game of Life. Built to demonstrate Thruput heavy compute capabilities."
-url = ""
+url = "https://chainoflife.chambaz.tech"
 github = "https://github.com/chambaz/chainoflife"
 
 [[projects]]
